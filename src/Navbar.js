@@ -50,8 +50,8 @@ export default function Navbar() {
         } class="dropbtn">Games</button>
             <div id="myDropdown" class="dropdown-content">
                 <a href="/games/numbers">Numbers</a>
-                <a href="/Dashboard">Dashboard</a>
-                <a href="#">Link 3</a>
+                <a href="/games/hangman">Hangman</a>
+                <a href="/games/alchemy">Alchemy</a>
             </div>
             <CustomLink to="/grammar">Grammar</CustomLink>
             <CustomLink to="/about">About</CustomLink>

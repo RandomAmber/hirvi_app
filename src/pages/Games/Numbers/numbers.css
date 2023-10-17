@@ -1,0 +1,62 @@
+.sound-button {
+    background-color: #E01A4F;
+    height: 3rem;
+    color: white;
+    width: 7rem;
+    font-size: 1.5rem;
+    border:none;
+    margin: 1rem 2rem 7rem 2rem;
+    cursor: pointer;
+}
+
+.number-button {
+    background-color: #E01A4F;
+    color: whitesmoke;
+    height: 4rem;
+    width: 10rem;
+    font-size: 2rem;
+    border:none;
+    cursor: pointer;
+}
+
+.number-button:hover {
+    background-color: #004F52;
+}
+
+.sound-button:hover{
+    background-color: #004F52;
+}
+
+.rules-button {
+    background-color: #008F6B;
+    height: 2rem;
+    width: 10rem;
+    font-size: 1rem;
+    border:none;
+    margin: 2rem 2rem;
+    color: whitesmoke;
+    left: 0;
+    position: absolute;
+}
+
+.rules-button:hover {
+    background-color: #004F52;
+}
+
+.game {
+    display: flexbox;
+}
+
+.score{
+    font-size: 2rem;
+    right:2rem;
+    position: absolute;
+    margin: 0rem 3rem 3rem 2rem;
+}
+
+.level{
+    font-size: 2rem;
+    right:2rem;
+    position: absolute;
+    margin: 3rem 3rem 3rem 2rem;
+}

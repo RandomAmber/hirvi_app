@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './numbers.css'
 
 export default function Number({ button_count, max_level}) {
 
@@ -26,7 +27,7 @@ export default function Number({ button_count, max_level}) {
     function Player({sound}){
         return (
             <div>
-                <button onClick={playSound}>
+                <button onClick={playSound} className='sound-button'>
                 {'Listen'}
                 </button>
             </div>
@@ -68,7 +69,7 @@ export default function Number({ button_count, max_level}) {
     function Button({number, onClick}){
     
         return (
-        <button onClick={onClick}>
+        <button onClick={onClick} className='number-button'>
             {number}
         </button>
         );
@@ -77,6 +78,9 @@ export default function Number({ button_count, max_level}) {
     const buttons = [];
     
     for (var i=0; i<button_count; i++) {
+        if (i%3==0){
+            buttons.push(<div></div>)
+        }
         if (i==right_answer_index){
             buttons.push(<Button number={arr[i]} onClick={handleRightClick}/>)
         }
@@ -89,7 +93,8 @@ export default function Number({ button_count, max_level}) {
     }
     else{
         return <>
-        <p>Score: {level.score}    Level: {level.level} of {max_level}</p>
+        <p className='score'>Score: {level.score}</p>
+        <p className='level'>Level: {level.level} of {max_level}</p>
         {Player({sound})}
         {buttons} 
         </>
