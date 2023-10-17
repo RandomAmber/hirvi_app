@@ -14,6 +14,8 @@ import LoginForm from "./Login"
 import React, {useState} from 'react';
 import AuthProvider, {useAuth} from './AuthProvider';
 import Dashboard from "./Dashboard"
+import Footer from "./Footer"
+import ContactForm from "./ContactForm"
 
 function App() {
 
@@ -29,6 +31,7 @@ function App() {
   return (
     <>
       <AuthProvider>
+      <div className="page">
       <Navbar/>
       <div className="container">
       <Routes>
@@ -44,7 +47,10 @@ function App() {
         <Route path="/registration" element={<RegistrationForm/>} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/dashboard" element={<Dashboard/>} />
+        <Route path="/contact" element={<ContactForm/>}/>
       </Routes>
+      </div>
+      <Footer/>
       </div>
       </AuthProvider>
     </>
