@@ -1,6 +1,5 @@
 import Navbar from "./Navbar"
 import Games from "./pages/Games"
-import About from "./pages/About"
 import Grammar from "./pages/Grammar"
 import Home from "./pages/Home"
 import { Route, Routes, Navigate, Outlet } from "react-router-dom"
@@ -37,7 +36,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/games" element={<Games />} />
         <Route path="/grammar" element={<Grammar />} />
-        <Route path="/about" element={<About />} />
         <Route path="/games/hangman" element={<Hangman />} />
         <Route path="/games/numbers" element={<Numbers />} />
         <Route path="/games/alchemy" element={<Alchemy />} />

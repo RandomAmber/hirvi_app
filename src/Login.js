@@ -65,7 +65,7 @@ function LoginForm() {
                     <input className="form__input" type="password"  id="password" value={password} onChange = {(e) => handleInputChange(e)} placeholder="Password"/>
                 </div>
             </div>
-            <div class="footer">
+            <div class="button-login">
                 <button onClick={()=>handleSubmit()} type="submit" class="btn">Login</button>
             </div>
         </div>

@@ -54,7 +54,7 @@ export default function Navbar() {
                 <a href="/games/alchemy">Alchemy</a>
             </div>
             <CustomLink to="/grammar">Grammar</CustomLink>
-            <CustomLink to="/about">About</CustomLink>
+            <CustomLink to="/">Home</CustomLink>
             {
                 us ? (
                     <CustomLink to="/dashboard">Dashboard</CustomLink>
@@ -63,7 +63,7 @@ export default function Navbar() {
                 )
             }
             {us ? (
-                    <li className=""><Link to="/about"  onClick={()=>{
+                    <li className=""><Link to="/"  onClick={()=>{
                         localStorage.setItem('user', JSON.stringify(null));
                         setAuth(false);
                         setUser(null);

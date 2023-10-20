@@ -1,0 +1,19 @@
+{
+    "news":[
+        {
+            "date": "20.10.2022", 
+            "title": "This is super news!!",
+            "text": "This is the latest news!!! Test test test lalala =)"
+        },
+        {
+            "date": "21.10.2022",
+            "title": "Cats rule!",
+            "text": "Is it logical to make a one file with all the news? I don't know..."
+        },
+        {
+            "date": "19.10.2022",
+            "title": "Fish text",
+            "text": "I think I'm cold. It's an autumn in Finland and it's really cold outside. And I'm tired and wanna a chocolate =("
+        }
+    ]
+}

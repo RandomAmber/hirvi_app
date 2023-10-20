@@ -15,9 +15,9 @@ body {
 }
 
 .container {
-  padding-top: 2rem;
+  padding-top: 0rem;
   text-align: center;
-  padding-bottom: 4rem;
+  padding-bottom: 3rem;
   border: none;
 }
 
@@ -190,4 +190,108 @@ body {
 .name-area-contact {
   width:16rem;
   height:2rem;
+}
+
+
+.starter-section {
+    background-image: url('hirvi.jpg');
+    background-size: cover;
+    height: 20rem;
+    width: 100%;
+    display: flex;
+}
+
+.starter-cool-note {
+    left: 3rem;
+    top: 3rem;
+    position: relative;
+    color: whitesmoke;
+}
+
+.about-section {
+    display:block;
+    background-color: white;
+    padding-bottom: 3rem;
+}
+
+.about-info {
+    display:flex;
+    justify-content: space-between;
+}
+
+.about-person-left{
+    display: flex;
+    left: 2rem;
+}
+
+
+.about-person-left img{
+    border-radius: 50%;
+    width: 15rem;
+    height: 15rem;
+    left: 2rem;
+    position: relative;
+
+}
+
+.about-person-right{
+    display: flex;
+    right: 2rem;
+    position: absolute;
+
+}
+
+.about-person-right img{
+    border-radius: 50%;
+    width: 15rem;
+    height: 15rem;
+    right: 2rem;
+}
+
+.about-name{
+    text-align: center;
+    padding: 2rem;
+}
+
+.about-text {
+    align-items: center;
+    text-align: left;
+    justify-content: left;
+    display: flex;
+}
+
+.news-section {
+    width: 100%;
+    background-color: #D9D9D9;
+    justify-content: center;
+    display:flexbox;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.news {
+    border-color: #004F52;
+    border: #004F52;
+    min-height: 20rem;
+    width: 40rem;
+    position: relative;
+    text-align: center;
+    border-style: double;
+    background-color: white;
+    margin-bottom:  1rem;
+
+}
+
+.news-date {
+    font-family: monospace;
+}
+
+.news-title {
+    font-size: larger;
+    font-weight: 400;
+}
+
+.news-text {
+    font-weight: 200;
 }
