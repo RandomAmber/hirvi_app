@@ -1,0 +1,69 @@
+{
+    "sm": [
+    {
+      "id": "1",
+      "content": "cat",
+      "concats": ["catrat", "catblood"],
+      "translation": "кошка"
+    },
+    {
+      "id": "2",
+      "content": "dog",
+      "concats": ["dograt", "dogblood"],
+      "translation": "собака"
+    },
+    {
+      "id": "3",
+      "content": "rat",
+      "concats": ["ratblood"]
+    },
+    {
+      "id": "4",
+      "content": "mouse",
+      "concats": ["mouseblouse"]
+    },
+    {
+      "id": "5",
+      "content": "blouse",
+      "concats": []
+    },
+    {
+      "id": "6",
+      "content": "blood",
+      "concats": []
+    }
+  ],
+  "next":
+  [
+    {
+      "id": "7",
+      "content": "mat",
+      "concats": ["matbed", "matled"]
+    },
+    {
+      "id": "8",
+      "content": "bed",
+      "concats": ["bedled", "bedlet"]
+    },
+    {
+      "id": "9",
+      "content": "let",
+      "concats": ["bedlet", "redlet"]
+    },
+    {
+      "id": "10",
+      "content": "led",
+      "concats": ["matbed"]
+    },
+    {
+      "id": "11",
+      "content": "red",
+      "concats": ["redlet"]
+    },
+    {
+      "id": "12",
+      "content": "ted",
+      "concats": ["tedred", "tedlet"]
+    }
+  ]
+}

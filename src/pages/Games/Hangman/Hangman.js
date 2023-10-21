@@ -6,6 +6,8 @@ import React from "react"
 import { HangmanDrawing, BODY_PARTS } from "./HangmanDrawing.tsx"
 import { HangmanWord } from "./HangmanWord.tsx"
 import { Keyboard } from "./Keyboard.tsx"
+import "./Hangman.css"
+import Button from "./Button"
 
 function getWord(sectionIndex) {
   const section = wordsData[sectionIndex]
@@ -15,6 +17,19 @@ function getWord(sectionIndex) {
 }
 
 function Hangman() {
+  const randomLetter = () => {
+    alert("Button randomLetter clicked!")
+  }
+  const newGame = () => {
+    setGuessLetters([])
+    setWordToGuess(getWord(selectedSection))
+  }
+
+  const rules = () => {
+    alert("Button rules clicked!")
+  }
+
+
   const [selectedSection, setSelectedSection] = useState(0)
 
   const [wordToGuess, setWordToGuess] = useState((getWord(selectedSection)))
@@ -27,7 +42,7 @@ function Hangman() {
   const isWinner = wordToGuess.split("")
     .every(letter => guessedLetters.includes(letter))
 
-  
+
   const handleSectionChange = (selectedIndex) => {
     const sectionIndex = parseInt(selectedIndex, 10)
     setSelectedSection(sectionIndex)
@@ -61,84 +76,74 @@ function Hangman() {
 
   }, [guessedLetters])
 
-  useEffect(() => {
-    const handler = (e) => {
-      const key = e.key
-      if (key !== "Enter") return
-
-      e.preventDefault()
-      setGuessLetters([])
-      setWordToGuess(getWord(selectedSection))
-    }
-
-    document.addEventListener("keypress", handler)
-    return () => {
-      document.removeEventListener("keypress", handler)
-    }
-
-  }, [selectedSection])
-
 
 
   return (
-    <div
-      style={{
-        maxWidth: "800px",
-        display: "flex",
-        flexDirection: "column",
-        gap: "2rem",
-        margin: "0 auto",
-        alignItems: "center"
-      }}
-    >
-      <div style={{
-        fontSize: "2rem",
-        textAlign: "center",
-      }}>
-        {isWinner && "Oikein hyvä! - Press 'enter' to try again"}
-        {isLoser && "Nice try! - Press 'enter' to try again"}
-      </div>
-      <div style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center"
-      }}>
-        <HangmanDrawing numberOfGuesses={inCorrectLetters.length} />
-        <div style={{
-          marginLeft: "8rem"
-        }} />
-        <HangmanWord
-          reveal={isLoser}
-          guessedLetters={guessedLetters} wordToGuess={wordToGuess} />
+    <div className="mainContainer">
+      <div className="leftArea">
+        <p>Leaderboard</p>
+        <Button className="button" label="rules" onClick={rules} />
+
 
       </div>
-      <div style={{
-        alignSelf: "stretch"
-      }}>
-        <Keyboard
-          disabled={isWinner || isLoser}
-          activeLetters={guessedLetters.filter(letter => wordToGuess.includes(letter))}
-          inactiveLetters={inCorrectLetters}
-          addGuessedLetter={addGuessedLetter} />
+
+      <div className="centreContainer">
+
+        <div className="gameContainer">
+          <h3>Hangman</h3>
+
+          {isWinner && <span>
+            Great job!
+            <Button className="button" label="new game" onClick={newGame} /> 
+          </span>}
+          {isLoser && <span>
+            Nice try! 
+            <Button className="button" label="new game" onClick={newGame} /> 
+          </span>}
+        </div>
+        <div className="hangmanArea">
+          <HangmanDrawing numberOfGuesses={inCorrectLetters.length} />
+          <div className="manSpace" />
+          <HangmanWord
+            reveal={isLoser}
+            guessedLetters={guessedLetters} wordToGuess={wordToGuess} />
+
+        </div>
+        <div className="keyboard">
+          <Keyboard
+            disabled={isWinner || isLoser}
+            activeLetters={guessedLetters.filter(letter => wordToGuess.includes(letter))}
+            inactiveLetters={inCorrectLetters}
+            addGuessedLetter={addGuessedLetter} />
+        </div>
+
+
+
       </div>
+      <div className="rightArea">
+        <p>Score</p>
+        <Button className="button" label="random letter" onClick={randomLetter} />
+        <div className="wordSelection">
+          <label htmlFor="selectionSelect">Select a word section </label>
+          <select
+            id="sectionSelect"
+            className="styled-select"
+            onChange={(e) => handleSectionChange(e.target.value)}
+            value={selectedSection}>
+            {wordsData.map((section, index) => (
+              <option key={index} value={index}>
+                {section.name}
+              </option>
+            ))}
 
-      <div>
-        <label htmlFor="selectionSelect">Select a word section </label>
-        <select
-        id="sectionSelect"
-        onChange={(e) => handleSectionChange(e.target.value)}
-        value={selectedSection}>
-          {wordsData.map((section, index) => (
-            <option key={index} value={index}>
-              {section.name}
-            </option>
-          ))}
+          </select>
+        </div>
 
-        </select>
+
       </div>
 
     </div>
+
   )
 }
 

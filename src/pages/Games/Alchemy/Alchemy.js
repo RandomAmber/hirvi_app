@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { Draggable, Droppable, DragDropContext } from "react-beautiful-dnd";
 import './styles.css';
+// import wordData from "./WordData.json"
 
 const data = [
   [{
