@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import './styles.css'
-import {database} from './firebase'
-import {ref,push,child,update} from "firebase/database";
 import { useNavigate } from "react-router-dom";
 
 
@@ -9,19 +7,15 @@ function RegistrationForm() {
     
     let navigate = useNavigate();
 
-    const [firstName, setFirstName] = useState(null);
-    const [lastName, setLastName] = useState(null);
+    const [name, setName] = useState(null);
     const [email, setEmail] = useState(null);
     const [password,setPassword] = useState(null);
     const [confirmPassword,setConfirmPassword] = useState(null);
 
     const handleInputChange = (e) => {
         const {id , value} = e.target;
-        if(id === "firstName"){
-            setFirstName(value);
-        }
-        if(id === "lastName"){
-            setLastName(value);
+        if(id === "name"){
+            setName(value);
         }
         if(id === "email"){
             setEmail(value);
@@ -35,48 +29,41 @@ function RegistrationForm() {
 
     }
 
-    const { spawn } = require('child_process');
-
-    // Run a Python script and return output
-    function runPythonScript(scriptPath, args) {
-
-        // Use child_process.spawn method from 
-        // child_process module and assign it to variable
-        const pyProg = spawn('python', [scriptPath].concat(args));
-
-        // Collect data from script and print to console
-        let data = '';
-        pyProg.stdout.on('data', (stdout) => {
-            data += stdout.toString();
+    // Example POST method implementation:
+    async function postData(url = "", data = {}) {
+        // Default options are marked with *
+        const response = await fetch(url, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(data), // body data type must match "Content-Type" header
         });
-
-        // Print errors to console, if any
-        pyProg.stderr.on('data', (stderr) => {
-            console.log(`stderr: ${stderr}`);
-        });
-
-        // When script is finished, print collected data
-        pyProg.on('close', (code) => {
-            console.log(`child process exited with code ${code}`);
-            console.log(data);
-        });
+        return response.json(); // parses JSON response into native JavaScript objects
     }
 
 
+
+
     const handleSubmit = () =>{
+        
         let obj = {
-                firstName : firstName,
-                lastName:lastName,
+                name:name,
                 email:email,
                 password:password,
-                confirmPassword:confirmPassword,
             }
-        if (password==confirmPassword)  {   
-            const newPostKey = push(child(ref(database), 'posts')).key;
-            const updates = {};
-            updates['users/' + email] = obj;
-            update(ref(database), updates);
-            runPythonScript("./scripts/registration_mail.py", ["strakovskaya.am@gmail.com"]);
+        
+        if (password==confirmPassword)  {  
+            postData("http://127.0.0.1:8000/users/", obj)
+            postData("http://127.0.0.1:8000/send_email", 
+            {email: email, password:password, name: name}
+            ).then((data) => {console.log(data);});
             navigate("/login");
         }
         else{
@@ -88,12 +75,8 @@ function RegistrationForm() {
         <div className="form">
             <div className="form-body">
                 <div className="username">
-                    <label className="form__label" for="firstName">First Name </label>
-                    <input className="form__input" type="text" value={firstName} onChange = {(e) => handleInputChange(e)} id="firstName" placeholder="First Name"/>
-                </div>
-                <div className="lastname">
-                    <label className="form__label" for="lastName">Last Name </label>
-                    <input  type="text" name="" id="lastName" value={lastName}  className="form__input" onChange = {(e) => handleInputChange(e)} placeholder="LastName"/>
+                    <label className="form__label" for="name">Name </label>
+                    <input className="form__input" type="text" value={name} onChange = {(e) => handleInputChange(e)} id="name" placeholder="Name"/>
                 </div>
                 <div className="email">
                     <label className="form__label" for="email">Email </label>

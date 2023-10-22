@@ -1,14 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import './styles.css';
-import { getDatabase, ref, child, get } from "firebase/database";
 import { useNavigate} from "react-router-dom";
 import AuthProvider, {useAuth} from './AuthProvider';
+import getData from './utiles.js';
 
 
 function LoginForm() {
     
     let navigate = useNavigate();
-    const dbRef = ref(getDatabase());
     const { auth, setAuth, user, setUser } = useAuth();
 
     const [email, setEmail] = useState(null);
@@ -28,14 +27,13 @@ function LoginForm() {
         let obj = {
                 email:email,
                 password:password,
-            }   
-        get(child(dbRef, `users/${email}`)).then((snapshot) => {
-            if (snapshot.exists()) {
-                console.log(snapshot.val());
-                if (snapshot.val().password==password){
+            }
+        //let response = getData("http://127.0.0.1:8000/users/"+email)
+        getData("http://127.0.0.1:8000/users/"+email).then(
+            function(response) {
+                console.log(response)
+                if (response["password"] == password){
                     localStorage.setItem('user', email);
-                    //const k = localStorage.getItem('user')
-                    //console.log(k + 'signed in')
                     setAuth(true)
                     setUser(email)
                     console.log(user + 'signed in')
@@ -43,14 +41,9 @@ function LoginForm() {
                 }
                 else {
                 alert('Wrong password.')
-                }
-            } else {
-            console.log("No data available");
-            alert('There is no user with this email. Try again or sign up.')
-            }
-        }).catch((error) => {
-            console.error(error);
-        });
+                }},
+            function(error) {console.log(error)}
+          );
     }
 
     return(

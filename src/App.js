@@ -6,7 +6,7 @@ import { Route, Routes, Navigate, Outlet } from "react-router-dom"
 import Hangman from "./pages/Games/Hangman/Hangman"
 import Alchemy from "./pages/Games/Alchemy/Alchemy"
 import Numbers from "./pages/Games/Numbers/Numbers"
-// import RegistrationForm from "./Registration"
+import RegistrationForm from "./Registration"
 import LoginForm from "./Login"
 import React, {useState} from 'react';
 import AuthProvider, {useAuth} from './AuthProvider';
@@ -39,7 +39,7 @@ function App() {
         <Route path="/games/hangman" element={<Hangman />} />
         <Route path="/games/numbers" element={<Numbers />} />
         <Route path="/games/alchemy" element={<Alchemy />} />
-        {/* <Route path="/registration" element={<RegistrationForm/>} /> */}
+        <Route path="/registration" element={<RegistrationForm/>} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/dashboard" element={<Dashboard/>} />
         <Route path="/contact" element={<ContactForm/>}/>

@@ -1,0 +1,8 @@
+name: hirvi
+dependencies:
+  - python=3.9.18
+  - pip
+  - pip:
+    - fastapi=0.104.0
+    - uvicorn=0.23.2
+    - sqlalchemy=2.0.22

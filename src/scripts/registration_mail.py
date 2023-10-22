@@ -1,10 +1,10 @@
 import smtplib
 
-def mail(sent_to):
+def sent_registration_email(email, password, name):
 
-    message = """
+    message = f"""
     Welcome to HIRVI!
-    Thank you for registration. Good luck with learning Finnish!
+    {name}, thank you for registration. Ypur password is {password}. Good luck with learning Finnish!
     """
 
     gmail_user = "hirvi.website@gmail.com"
@@ -16,7 +16,7 @@ def mail(sent_to):
         server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
         server.ehlo()
         server.login(gmail_user, gmail_app_password)
-        server.sendmail(sent_from, sent_to, email_text)
+        server.sendmail(sent_from, email, email_text)
         server.close()
         print('Email sent!')
         response = {"status":"OK"}
@@ -26,4 +26,4 @@ def mail(sent_to):
     return response
 
 #if __name__ == "__main__":
-#    mail()
+#    sent_registration_email()
