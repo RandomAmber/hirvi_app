@@ -298,3 +298,8 @@ body {
 .news-text {
     font-weight: 200;
 }
+
+.logo {
+    width: 2.5rem;
+    height: 2.5rem;
+}

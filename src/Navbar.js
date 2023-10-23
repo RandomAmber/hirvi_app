@@ -3,6 +3,7 @@ import { useNavigate} from "react-router-dom";
 import {useAuth} from './AuthProvider';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import logo from "./logo.png";
 
 export default function Navbar() {
 
@@ -40,7 +41,7 @@ export default function Navbar() {
 
 
     return <nav className="nav">
-        <Link to='/' className="site-title">Site Name</Link>
+        <Link to='/' className="site-title"><img src={logo} className="logo"></img>Hirvi</Link>
         <ul>
         <button onClick={
             ()=>{
