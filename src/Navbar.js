@@ -52,6 +52,7 @@ export default function Navbar() {
                 <a href="/games/numbers">Numbers</a>
                 <a href="/games/hangman">Hangman</a>
                 <a href="/games/alchemy">Alchemy</a>
+                <a href="/games/affixes">Affixes</a>
             </div>
             <CustomLink to="/grammar">Grammar</CustomLink>
             <CustomLink to="/">Home</CustomLink>

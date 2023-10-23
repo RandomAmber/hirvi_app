@@ -84,6 +84,15 @@ body {
     align-items: flex-start;
 }
 
+.gameContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+
+
 .scoring {
     justify-content: center;
 
@@ -94,4 +103,72 @@ body {
     padding: 4px;
     display: flex;
     flex-direction: column;
+}
+
+
+.wordHolders {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.wordHolder {
+    min-height: 50px;
+    padding: 4;
+    width: 200px;
+
+}
+
+.wordInWordHolder {
+    user-select: none;
+    padding: auto;
+    margin: 0px 0px 8px 0px;
+    min-height: 50px;
+}
+
+.answerHolder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 8px;
+
+}
+
+.answerHolderWFT {
+    min-height: 70px;
+    background-color: lightblue; 
+    padding: 4px;
+    width: 200px;
+
+}
+
+.wordArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.wordAreaWTF {
+    padding: 4px;
+    max-width: 500px;
+    min-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+}
+
+.wordInWordArea {
+    user-select: none;
+    padding: 10px;
+    margin: 0px 4px 4px 0px;
+    min-width: 50px;
+    max-height: 80px;
+    color: white;
+    background-color: red;
+    
+
 }

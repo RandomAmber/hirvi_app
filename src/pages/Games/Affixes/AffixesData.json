@@ -1,0 +1,195 @@
+{
+    "1": [
+    {
+      "id": "1",
+      "content": "cat",
+      "concats": ["catish", "cater"],
+      "concats_translation": ["кошачий", "кошатник"],
+      "translation": "кошка"
+    },
+    {
+      "id": "2",
+      "content": "dog",
+      "concats": ["dogship"],
+      "concats_translation": ["собачество"],
+      "translation": "собака"
+    },
+    {
+      "id": "3",
+      "content": "rat",
+      "concats": ["ratless"],
+      "translation": "крыса",
+      "concats_translation": ["бескрысный"]
+    },
+    {
+      "id": "4",
+      "content": "er",
+      "concats": ["catter", "dogger"],
+      "translation": "деятель",
+      "concats_translation": ["кошатник", "собачник"]
+    },
+    {
+      "id": "5",
+      "content": "ish",
+      "concats": ["catish"],
+      "concats_translation": ["кошачий"],
+      "translation": ["прилагательное"]
+    },
+    {
+      "id": "6",
+      "content": "ship",
+      "concats": ["dogship"],
+      "translation": ["абстрактное существительное"],
+      "concats_translation": ["собачество"]
+    }
+  ],
+  "2":
+  [
+    {
+      "id": "7",
+      "content": "mat",
+      "concats": ["matbed", "matled"]
+    },
+    {
+      "id": "8",
+      "content": "bed",
+      "concats": ["bedled", "bedlet"]
+    },
+    {
+      "id": "9",
+      "content": "let",
+      "concats": ["bedlet", "redlet"]
+    },
+    {
+      "id": "10",
+      "content": "led",
+      "concats": ["matbed"]
+    },
+    {
+      "id": "11",
+      "content": "red",
+      "concats": ["redlet"]
+    },
+    {
+      "id": "12",
+      "content": "ted",
+      "concats": ["tedred", "tedlet"]
+    }
+  ],
+  "adj1": [
+    {
+      "id": "13",
+      "content": "ala",
+      "concats": ["alaikäinen"],
+      "concats_translation": ["underage"],
+      "translation": "under"
+    },
+    {
+      "id": "14",
+      "content": "epä",
+      "concats": ["epätasainen", "epätäydellinen", "epäolennainen"],
+      "concats_translation": ["uneven", "imperfect", "irrelevant"],
+      "translation": "non"
+    },
+    {
+      "id": "15",
+      "content": "epä",
+      "concats": ["epätasainen", "epätäydellinen", "epäolennainen"],
+      "concats_translation": ["uneven", "imperfect", "irrelevant"],
+      "translation": "non"
+    },
+    {
+      "id": "16",
+      "content": "epä",
+      "concats": ["epätasainen", "epätäydellinen", "epäolennainen"],
+      "concats_translation": ["uneven", "imperfect", "irrelevant"],
+      "translation": "non"
+    },
+    {
+      "id": "17",
+      "content": "heikko",
+      "concats": ["heikkotehoinen"],
+      "translation": "weak",
+      "concats_translation": ["low-powered"]
+    },
+    {
+      "id": "18",
+      "content": "huono",
+      "concats": ["huonokuuloinen", "huonolaatuinen"],
+      "concats_translation": ["bad-hearing (person)", "low-quality"],
+      "translation": "bad"
+    },
+    {
+      "id": "19",
+      "content": "huono",
+      "concats": ["huonokuuloinen", "huonolaatuinen"],
+      "concats_translation": ["bad-hearing (person)", "low-quality"],
+      "translation": "bad"
+    },
+    {
+      "id": "20",
+      "content": "kasvi",
+      "concats": ["kasvipohjainen"],
+      "concats_translation": ["plant-based"],
+      "translation": "plant"
+    },
+    {
+      "id": "21",
+      "content": "ikäinen",
+      "concats": ["alaikäinen"],
+      "concats_translation": ["underage"],
+      "translation": "age+adj"
+    },
+    {
+      "id": "22",
+      "content": "tasainen",
+      "concats": ["epätasainen"],
+      "concats_translation": ["uneven"],
+      "translation": "even"
+    },
+    {
+      "id": "23",
+      "content": "täydellinen",
+      "concats": ["epätäydellinen"],
+      "concats_translation": ["imperfect"],
+      "translation": "perfect"
+    },
+    {
+      "id": "24",
+      "content": "olennainen",
+      "concats": ["epäolennainen"],
+      "concats_translation": ["irrelevant"],
+      "translation": "relevant"
+    },
+    {
+      "id": "25",
+      "content": "tehoinen",
+      "concats": ["heikkotehoinen"],
+      "translation": "power+adj",
+      "concats_translation": ["low-powered"]
+    },
+    {
+      "id": "26",
+      "content": "kuuloinen",
+      "concats": ["huonokuuloinen"],
+      "concats_translation": ["bad-hearing (person)"],
+      "translation": "hearing+adj"
+    },
+    {
+      "id": "27",
+      "content": "laatuinen",
+      "concats": ["huonolaatuinen"],
+      "concats_translation": ["low-quality"],
+      "translation": "quality+adj"
+    },
+    {
+      "id": "28",
+      "content": "pohjainen",
+      "concats": ["kasvipohjainen"],
+      "concats_translation": ["plant-based"],
+      "translation": "based"
+    }
+
+  ]
+
+}

@@ -5,6 +5,7 @@ import Home from "./pages/Home"
 import { Route, Routes, Navigate, Outlet } from "react-router-dom"
 import Hangman from "./pages/Games/Hangman/Hangman"
 import Alchemy from "./pages/Games/Alchemy/Alchemy"
+import Affixes from "./pages/Games/Affixes/Affixes"
 import Numbers from "./pages/Games/Numbers/Numbers"
 import RegistrationForm from "./Registration"
 import LoginForm from "./Login"
@@ -39,6 +40,7 @@ function App() {
         <Route path="/games/hangman" element={<Hangman />} />
         <Route path="/games/numbers" element={<Numbers />} />
         <Route path="/games/alchemy" element={<Alchemy />} />
+        <Route path="/games/affixes" element={<Affixes />} />
         <Route path="/registration" element={<RegistrationForm/>} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/dashboard" element={<Dashboard/>} />
