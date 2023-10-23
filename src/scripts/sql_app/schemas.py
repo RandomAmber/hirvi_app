@@ -18,3 +18,23 @@ class User(UserBase):
 
     class Config:
         orm_mode = True
+
+class GameBase(BaseModel):
+    name: str
+
+class Game(GameBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+class GameRoundBase(BaseModel):
+    score: int
+    user_id: int
+    game_id: int
+
+class GameRound(GameRoundBase):
+    id: int
+
+    class Config:
+        orm_mode = True

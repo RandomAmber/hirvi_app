@@ -14,12 +14,11 @@ function Restore() {
         if(id === "email"){
             setEmail(value);
         }
-    }
+    } 
 
     const handleSubmit = () =>{
         getData("http://127.0.0.1:8000/users/"+email).then(
             function(response) {
-                console.log("hhhhhh"+response["password"])
                 if (response){
                     postData("http://127.0.0.1:8000/send_restore_email", 
                             {email: email, password: response["password"], name: response["name"]}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './numbers.css'
+import {getData, postData} from '../../../utiles.js' 
 
 export default function Number({ button_count, max_level}) {
 
@@ -89,6 +90,25 @@ export default function Number({ button_count, max_level}) {
         }
     }
     if (level.level > max_level){
+        let email = localStorage.getItem('user')
+        console.log(email)
+        console.log('oh')
+        if (email && (email!='null')){
+            getData("http://127.0.0.1:8000/users/"+email).then(
+                function(response) {
+                    console.log(response)
+                    if (response['id']){
+                        let obj = {
+                            user_id: response['id'],
+                            score: level.score,
+                            game_id: 1
+                        }
+                        postData("http://127.0.0.1:8000/game_rounds/", obj)
+                    }
+                },
+                function(error) {console.log(error)}
+              );
+        }
         return <p>This is the end of the game. Your final score is {level.score} of {level.level-1}</p>
     }
     else{
