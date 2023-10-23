@@ -1,79 +1,14 @@
 import { useState, useEffect } from "react"
 import { Draggable, Droppable, DragDropContext } from "react-beautiful-dnd";
-import './styles.css';
-// import wordData from "./WordData.json"
+import './Alchemy.css';
+import wordData from "./WordData.json"
 
-const data = [
-  [{
-    id: "1",
-    content: "cat",
-    concats: ["catrat", "catblood"],
-    translation: "кошка"
-  },
-  {
-    id: "2",
-    content: "dog",
-    concats: ["dograt", "dogblood"],
-    translation: "собака"
-  },
-  {
-    id: "3",
-    content: "rat",
-    concats: ["ratblood"]
-  },
-  {
-    id: "4",
-    content: "mouse",
-    concats: ["mouseblouse"]
-  },
-  {
-    id: "5",
-    content: "blouse",
-    concats: []
-  },
-  {
-    id: "6",
-    content: "blood",
-    concats: []
-  }],
-  [{
-    id: "7",
-    content: "mat",
-    concats: ["matbed", "matled"]
-  },
-  {
-    id: "8",
-    content: "bed",
-    concats: ["bedled", "bedlet"]
-  },
-  {
-    id: "9",
-    content: "let",
-    concats: ["bedlet", "redlet"]
-  },
-  {
-    id: "10",
-    content: "led",
-    concats: ["matbed"]
-  },
-  {
-    id: "11",
-    content: "red",
-    concats: ["redlet"]
-  },
-  {
-    id: "12",
-    content: "ted",
-    concats: ["tedred", "tedlet"]
-  }]
-
-]
-
+const dataArray = Object.values(wordData)
 //Select a random data list
 
 
-const randomIndex = Math.floor(Math.random() * data.length);
-const randomData = data[randomIndex];
+const randomIndex = Math.floor(Math.random() * dataArray.length);
+const randomData = dataArray[randomIndex];
 
 const WordHolders = {
   WordHolder1: {
@@ -143,6 +78,10 @@ const wordsPerRow = 4
 
 function Alchemy() {
   const [areas, setAreas] = useState(WordHolders);
+  const [item1_translation, setItem1Translation] = useState('');
+  const [item2_translation, setItem2Translation] = useState('');
+  const [concat_translation, setConcatTranslation] = useState("");
+
 
   const [combinedWord, setCombinedWord] = useState("");
   const [matchesConcats, setMatchesConcats] = useState(false);
@@ -174,7 +113,9 @@ function Alchemy() {
   const concatenateWords = () => {
     if (areas.WordHolder1.items.length === 1 && areas.WordHolder2.items.length === 1) {
       const item1 = areas.WordHolder1.items.map((item) => item.content)
+      const item1Translation = areas.WordHolder1.items.map((item) => item.translation)
       const item2 = areas.WordHolder2.items.map((item) => item.content)
+      const item2Translation = areas.WordHolder2.items.map((item) => item.translation)
       const combined = item1.join("") + item2.join("")
       setCombinedWord(combined)
 
@@ -182,20 +123,32 @@ function Alchemy() {
       setMatchesConcats(matches)
 
       if (matches) {
+        setItem1Translation(item1Translation);
+        setItem2Translation(item2Translation);
+        const index = areas.WordHolder1.items[0].concats.indexOf(combined)
+        if(index !== -1){
+          const concat_translation = areas.WordHolder1.items[0].concats_translation[index];
+          setConcatTranslation(concat_translation)
+        }
         if (!dictionary.includes(combined)) {
           setScore((prevScore) => prevScore + 1);
           setDictionary((prevDictionary) => [...prevDictionary, combined]);
         }
 
-
-
+      } else {
+        //clea the translation
+        setItem1Translation("")
+        setItem2Translation("")
+        setConcatTranslation("")
       }
 
 
-      return combined
+      return combined, item1Translation, item2Translation
     }
     setCombinedWord("") //reset the combinedWord
     setMatchesConcats(false) //reset matchesConcats
+    setItem1Translation("")
+    setItem2Translation("")
     return ""
   }
 
@@ -213,26 +166,13 @@ function Alchemy() {
         <p>leaderboard</p>
       </div>
 
-      <div className="centreContainer"><h1 style={{ textAlign: "center" }}>Word Alchemy</h1>
-        <div className="gameContainer"
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-          }}>
+      <div className="centreContainer">
+        <h1 className="heading">Word Alchemy</h1>
+        <div className="gameContainer">
 
-          <div className="gameArea"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-            }}>
+          <div className="gameArea">
             <DragDropContext onDragEnd={(result) => onDragEnd(result, areas, setAreas)}>
-              <div className="gameText"
-                style={{
-
-                  textAlign: "center"
-                }}>
+              <div className="heading">
                 {matchesConcats && <p>Such word exists! Press the button to make a new one:</p>
                   && <button onClick={clearWordHolders}>Clear WordHolders</button>
                 }
@@ -245,44 +185,31 @@ function Alchemy() {
               </div>
 
 
-              <div className="wordHolders"
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}>
+              <div className="wordHolders">
                 {/* Render WordHolder1 */}
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                  <h2>{areas.WordHolder1.name}</h2>
+                <div>
+                  {matchesConcats &&  item1_translation }
                   <div style={{ margin: 8 }}>
                     <Droppable droppableId="WordHolder1">
                       {(provided, snapshot) => (
-                        <div
+                        <div className="wordHolder"
                           {...provided.droppableProps}
                           ref={provided.innerRef}
                           style={{
-                            minHeight: 100,
-                            background: snapshot.isDraggingOver ? "lightblue" : "lightgrey",
-                            padding: 4,
-                            width: 250,
+                            background: snapshot.isDraggingOver ? "pink" : "blue", //wordHolder 1 colors
                           }}
                         >
                           {areas.WordHolder1.items.map((item, index) => (
                             <Draggable key={item.id} draggableId={item.id} index={index}>
                               {(provided, snapshot) => (
-                                <div
+                                <div className="wordInWordHolder"
                                   ref={provided.innerRef}
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
                                   style={{
-                                    userSelect: "none",
-                                    padding: 16,
-                                    margin: "0 0 8px 0",
-                                    minHeight: "50px",
-                                    color: "white",
                                     backgroundColor: snapshot.isDragging
-                                      ? "#263B4A"
-                                      : "#456C86",
+                                      ? "red"
+                                      : "blue",
                                     ...provided.draggableProps.style,
                                   }}
                                 >
@@ -300,35 +227,31 @@ function Alchemy() {
 
                 <p>+</p>
 
-                {/* Render WordHolder2 */}
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                  <h2>{areas.WordHolder2.name}</h2>
+                
+                <div className="wordHolders">
+                  {/* Render WordHolder2 */}
+                  <div>
+                  {matchesConcats &&  item2_translation }
+                  
+                
                   <div style={{ margin: 8 }}>
                     <Droppable droppableId="WordHolder2">
                       {(provided, snapshot) => (
-                        <div
+                        <div className="wordHolder"
                           {...provided.droppableProps}
                           ref={provided.innerRef}
                           style={{
-                            minHeight: 100,
-                            background: snapshot.isDraggingOver ? "lightblue" : "lightgrey",
-                            padding: 4,
-                            width: 250,
+                            background: snapshot.isDraggingOver ? "lightblue" : "lightgrey", // wordHolder2 colors
                           }}
                         >
                           {areas.WordHolder2.items.map((item, index) => (
                             <Draggable key={item.id} draggableId={item.id} index={index}>
                               {(provided, snapshot) => (
-                                <div
+                                <div className="wordInWordHolder"
                                   ref={provided.innerRef}
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
                                   style={{
-                                    userSelect: "none",
-                                    padding: 16,
-                                    margin: "0 0 8px 0",
-                                    minHeight: "50px",
-                                    color: "white",
                                     backgroundColor: snapshot.isDragging
                                       ? "#263B4A"
                                       : "#456C86",
@@ -347,25 +270,16 @@ function Alchemy() {
 
 
                   </div>
+                  </div>
 
 
                 </div>
 
                 <p>=</p>
                 {/* answerholder  */}
-                <div style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  margin: 8,
-                }}>
-                  <h2>AnswerHolder</h2>
-                  <div style={{
-                    minHeight: 100,
-                    background: "lightblue",
-                    padding: 4,
-                    width: 250,
-                  }}
+                <div className="answerHolder" >
+                  {matchesConcats &&  concat_translation }
+                  <div className="answerHolderWFT" 
                   >
                     {combinedWord}
                   </div>
@@ -375,42 +289,26 @@ function Alchemy() {
 
               </div>
               {/* Render WordArea */}
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <h2>{areas.WordArea.name}</h2>
+              <div className="wordArea" >
+                <p>Words to tinker with</p>
                 <div style={{ margin: 8 }}>
                   <Droppable droppableId="WordArea">
                     {(provided, snapshot) => (
-                      <div
+                      <div className="wordAreaWTF"
                         {...provided.droppableProps}
                         ref={provided.innerRef}
                         style={{
-                          background: snapshot.isDraggingOver ? "lightblue" : "lightgrey",
-                          padding: 4,
-                          maxWidth: "500px", // Adjust the width as needed
-                          // Set a maximum height for the WordArea to limit the number of rows
-                          minHeight: "300px", // Adjust the height as needed
-                          overflowY: "auto", // Enable vertical scrolling if needed
-                          display: "flex",
-                          flexWrap: "wrap", // Allow words to wrap to the next row
-                          justifyContent: "flex-start", // Center the words horizontally
-                        }}
+                          background: snapshot.isDraggingOver ? "lightblue" : "lightgrey"}} //wordArea colors
                       >
                         {areas.WordArea.items.map((item, index) => (
                           <Draggable key={item.id} draggableId={item.id} index={index}>
                             {(provided, snapshot) => (
-                              <div
+                              <div className="wordInWordArea"
                                 ref={provided.innerRef}
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
                                 style={{
-                                  userSelect: "none",
-                                  padding: "16px",
-                                  margin: "0 8px 8px 0", // Add margin between words
-                                  minWidth: "100px", // Adjust the minimum width as needed
-                                  maxHeight: "20px",
-                                  color: "white",
-                                  backgroundColor: "pink",
-                                  backgroundColor: snapshot.isDragging ? "#263B4A" : "#456C86",
+                                  backgroundColor: snapshot.isDragging ? "blue" : "red", //word colors!
                                   ...provided.draggableProps.style,
                                 }}
                               >
@@ -442,11 +340,11 @@ function Alchemy() {
         </div>
         <div className="dict"></div>
         <p>Words you coined:</p>
-              <ul>
-                {dictionary.map((word, index) => (
-                  <li key={index}>{word}</li>
-                ))}
-              </ul>
+        <ul>
+          {dictionary.map((word, index) => (
+            <li key={index}>{word}</li>
+          ))}
+        </ul>
       </div>
     </div>
 
