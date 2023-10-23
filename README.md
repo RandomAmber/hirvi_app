@@ -11,8 +11,9 @@ Web portal for Finnish learners with games, articles and interesting news. Targe
     >conda env create -f scripts/environment.yml
 3. Activate the environment.
     >conda activate hirvi
-4. Run server:
+4. Initialize data and run server:
     >cd scripts
+    >python3 initial_data.py
     >uvicorn sql_app.main:app
 
 #### Web application
