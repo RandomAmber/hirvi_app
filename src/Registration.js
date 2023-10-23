@@ -54,17 +54,35 @@ function RegistrationForm() {
     const handleSubmit = () =>{
         
         let obj = {
-                name:name,
                 email:email,
                 password:password,
+                name:name,
+        }
+        var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if (password==confirmPassword)  {
+            if(email.match(validRegex)){
+                if(name!=null){
+                    postData("http://127.0.0.1:8000/users/", obj).then(
+                        function(response){
+                            if (response['status'] == 200){
+                                postData("http://127.0.0.1:8000/send_email", 
+                                {email: email, password:password, name: name}
+                                ).then((data) => {console.log(data);});
+                                navigate("/login");
+                            }
+                            else{
+                                alert("Email has been registrated already, you can restore your password.")
+                            }
+                        },function(error) {console.log(error)}
+                    );
+                }
+                else{
+                    alert("Tape your name!")
+                }
             }
-        
-        if (password==confirmPassword)  {  
-            postData("http://127.0.0.1:8000/users/", obj)
-            postData("http://127.0.0.1:8000/send_email", 
-            {email: email, password:password, name: name}
-            ).then((data) => {console.log(data);});
-            navigate("/login");
+            else{
+                alert('Wrong email.')
+            }
         }
         else{
             alert('Password isnt the same. try again.')

@@ -1,7 +1,5 @@
 
-
-
-/*export async function postData(url = "", data = {}) {
+async function postData(url = "", data = {}) {
     // Default options are marked with *
     const response = await fetch(url, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -15,10 +13,10 @@
     referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
     body: JSON.stringify(data), // body data type must match "Content-Type" header
     });
-    return response.json(); // parses JSON response into native JavaScript objects
-}*/
+    return await response.json(); // parses JSON response into native JavaScript objects
+}
 
-export default async function getData(url = "") {
+async function getData(url = "") {
     const $ = window.$;
     // Default options are marked with *
     const response = await fetch(url, {
@@ -29,5 +27,7 @@ export default async function getData(url = "") {
     redirect: "follow", // manual, *follow, error
     referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
     });
-    return response.json(); // parses JSON response into native JavaScript objects
+    return await response.json(); // parses JSON response into native JavaScript objects
 }
+
+export {getData, postData};
