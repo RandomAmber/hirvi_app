@@ -13,6 +13,7 @@ import AuthProvider, {useAuth} from './AuthProvider';
 import Dashboard from "./Dashboard"
 import Footer from "./Footer"
 import ContactForm from "./ContactForm"
+import Restore from "./Restore_password"
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/dashboard" element={<Dashboard/>} />
         <Route path="/contact" element={<ContactForm/>}/>
+        <Route path="/login/restore_password" element={<Restore/>} />
       </Routes>
       </div>
       <Footer/>

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './styles.css';
 import { useNavigate} from "react-router-dom";
 import AuthProvider, {useAuth} from './AuthProvider';
-import getData from './utiles.js';
+import {getData} from './utiles.js';
 
 
 function LoginForm() {
@@ -21,6 +21,10 @@ function LoginForm() {
         if(id === "password"){
             setPassword(value);
         }
+    }
+
+    const handleRestore = () => {
+        navigate('/login/restore_password')
     }
 
     const handleSubmit = () =>{
@@ -60,6 +64,7 @@ function LoginForm() {
             </div>
             <div class="button-login">
                 <button onClick={()=>handleSubmit()} type="submit" class="btn">Login</button>
+                <button onClick={()=>handleRestore()} type="submit" class="btn">Restore password</button>
             </div>
         </div>
         

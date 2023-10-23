@@ -3,7 +3,7 @@ from typing import Union
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
-from registration_mail import sent_registration_email
+from mail import send_registration_email, send_restore_email
 from pydantic import BaseModel
 
 
@@ -52,18 +52,23 @@ app.add_middleware(
 
 @app.post("/send_email")
 def read_root(user: UserBase):
+    send_registration_email(user.email, user.password, user.name)
+    return {"status": "OK"}
 
-    sent_registration_email(user.email, user.password, user.name)
+@app.post("/send_restore_email")
+def restore(user: UserBase):
+    print(user.email, user.password, user.name)
+    send_restore_email(user.email, user.password, user.name)
     return {"status": "OK"}
 
 
 @app.post("/users/")
-def create_user(user: schemas.UserBase, db: Session = Depends(get_db)):
+def create_user(user: UserBase, db: Session = Depends(get_db)):
     db_user = crud.get_user_by_email(db, email=user.email)
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
     crud.create_user(db=db, user=user)
-    return {"status": "OK"}
+    return {"status": 200}
 
 
 @app.get("/users/")
