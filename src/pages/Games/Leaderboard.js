@@ -34,7 +34,6 @@ export default function Leaderboard({game_id, limit}) {
         <h1>Leaderboard</h1>
         {board}
         </div>
-
         </>
    
     )

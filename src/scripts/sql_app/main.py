@@ -1,18 +1,21 @@
-from typing import Union
+from typing import Union, Annotated
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
-from mail import send_registration_email, send_restore_email
+from mail import send_registration_email, send_restore_email, contact
 from pydantic import BaseModel
 
 
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, Form
 from sqlalchemy.orm import Session
 from sqlalchemy import event
 
 from . import crud, models, schemas
 from .database import SessionLocal, engine
+
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import RedirectResponse
 
 from .schemas import UserBase
 
@@ -115,3 +118,24 @@ def read_leaderboard(game_id: int, limit:int, db: Session = Depends(get_db)):
 def create_game_round(game_round: schemas.GameRoundBase, db: Session = Depends(get_db)):
     crud.create_game_round(db=db, game_round=game_round)
     return {"status": 200}
+
+@app.patch("/game_rounds/{game_id}/{user_id}")
+def update_game_rounds(game_id: int, user_id: int, db: Session = Depends(get_db)):
+    game_round = crud.get_game_round(user_id=user_id, game_id=game_id, db=db)
+    if game_round is None:
+        crud.create_game_round(db=db, game_round=schemas.GameRoundBase(game_id=game_id, user_id=user_id, score=0))
+    return crud.update_game_round(db=db, game_id=game_id, user_id=user_id)
+    
+@app.get("/game_rounds/{game_id}/{user_id}")
+def update_game_rounds(game_id: int, user_id: int, db: Session = Depends(get_db)):
+    return crud.get_game_round(user_id=user_id, game_id=game_id, db=db)
+
+
+templates = Jinja2Templates(directory="jinja_templates")
+
+@app.post("/contact/")
+def create_game_round(request: Request, message: Annotated[str, Form()], name: Annotated[str, Form()], db: Session = Depends(get_db)):
+    response = contact(message=message, user=name)
+    return templates.TemplateResponse("contact.html", {"request": request, "name": name})
+    #return RedirectResponse('http://localhost:3000/')
+    

@@ -28,9 +28,6 @@ function Dashboard() {
     if (!email) {
         return <Navigate to={redirectPath} replace />;
     }
-    
-    console.log(user)
-    console.log(scores)
 
     function get_best_score(){
         let best_score = 0
@@ -45,7 +42,7 @@ function Dashboard() {
 
     return <>
     <h1>Welcome, {user['name']}</h1>
-    <h1>Your best score in Numbers is {get_best_score()}</h1>
+    <h1>Your total score in Numbers is {get_best_score()}</h1>
     </>
 }
 

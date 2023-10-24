@@ -1,10 +1,13 @@
 import smtplib
 
+ADMIN_MAIL = "hirvi.website@gmail.com"
+PASSWORD = "jqlq eids bztt aqbq"
+
 
 def send_email(message, email):
-    gmail_user = "hirvi.website@gmail.com"
-    gmail_app_password = "jqlq eids bztt aqbq"
-    sent_from = "hirvi.website@gmail.com"
+    gmail_user = ADMIN_MAIL
+    gmail_app_password = PASSWORD
+    sent_from = ADMIN_MAIL
 
     print(email + message)
 
@@ -41,6 +44,9 @@ def send_restore_email(email, password, name):
 
     response = send_email(message, email)
     return response
+
+def contact(message, user=''):
+    return send_email('USER '+ user + '\n' + message, ADMIN_MAIL)
 
 #if __name__ == "__main__":
 #    sent_registration_email()

@@ -26,12 +26,8 @@ INITIAL_DATA = {
           schemas.GameBase(name='Affixes'),
       ],
       'game_rounds': [
-          schemas.GameRoundBase(game_id=1, score=1, user_id=1),
-          schemas.GameRoundBase(game_id=1, score=10, user_id=1),
-          schemas.GameRoundBase(game_id=1, score=2, user_id=1),
-          schemas.GameRoundBase(game_id=1, score=4, user_id=1),
-          schemas.GameRoundBase(game_id=1, score=1, user_id=2),
-          schemas.GameRoundBase(game_id=200, score=1, user_id=2)
+          schemas.GameRoundBase(game_id=1, score=20, user_id=1),
+          schemas.GameRoundBase(game_id=1, score=10, user_id=2)
       ]
 }
 
