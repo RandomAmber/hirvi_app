@@ -25,6 +25,7 @@ body {
   background-color: #D9D9D9;
   color: #004F52;
   font-weight: 500;
+  font-family: 'Helvetica';
   display: flex;
   justify-content: space-between;
   align-items: stretch;
@@ -90,6 +91,7 @@ body {
   color: #004F52;
   font-size: 1rem;
   border: none;
+  font-family: 'Helvetica';
 }
 
 
@@ -302,4 +304,10 @@ body {
 .logo {
     width: 2.5rem;
     height: 2.5rem;
+}
+
+.leaderboard {
+    left: 2rem;
+    top: 10rem;
+    position: absolute;
 }

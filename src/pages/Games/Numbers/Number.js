@@ -4,6 +4,8 @@ import {getData, postData} from '../../../utiles.js'
 
 export default function Number({ button_count, max_level}) {
 
+    let email = localStorage.getItem('user')
+
     var max_number = 100
 
     var number = Math.round(Math.random() * max_number)
@@ -91,8 +93,7 @@ export default function Number({ button_count, max_level}) {
     }
     if (level.level > max_level){
         let email = localStorage.getItem('user')
-        console.log(email)
-        console.log('oh')
+
         if (email && (email!='null')){
             getData("http://127.0.0.1:8000/users/"+email).then(
                 function(response) {

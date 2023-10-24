@@ -17,7 +17,7 @@ class User(UserBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class GameBase(BaseModel):
     name: str
@@ -26,7 +26,7 @@ class Game(GameBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class GameRoundBase(BaseModel):
     score: int
@@ -37,4 +37,4 @@ class GameRound(GameRoundBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True

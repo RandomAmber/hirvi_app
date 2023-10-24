@@ -100,6 +100,17 @@ def read_game_rounds_user(user_id: int, db: Session = Depends(get_db)):
     game_rounds = crud.get_game_rounds_user(db, user_id=user_id)
     return game_rounds
 
+@app.get("/game_rounds/{game_id}")
+def read_game_rounds_user(game_id: int, db: Session = Depends(get_db)):
+    game_rounds = crud.get_game_rounds_game(db, game_id=game_id)
+    return game_rounds
+
+@app.get("/leaderboard/{game_id}/{limit}")
+def read_leaderboard(game_id: int, limit:int, db: Session = Depends(get_db)):
+
+    game_rounds = crud.get_game_leaderboard(db, game_id=game_id, limit=limit)
+    return game_rounds
+
 @app.post("/game_rounds/")
 def create_game_round(game_round: schemas.GameRoundBase, db: Session = Depends(get_db)):
     crud.create_game_round(db=db, game_round=game_round)
