@@ -15,34 +15,37 @@ function Dashboard() {
     const [user, setUser] = useState([])
     const [scores, setScores] = useState([])
     const fetchUser = async () => {
-      const user = await getData("http://127.0.0.1:8000/users/"+email)
-      setUser(user)
-      const scores = await getData("http://127.0.0.1:8000/game_rounds/"+user.id)
-      setScores(scores)
+        const user = await getData("http://127.0.0.1:8000/users/"+email)
+        setUser(user)
+        const scores = await getData("http://127.0.0.1:8000/game_rounds/"+user.id)
+        if (scores){
+            setScores(scores)
+        }
     }
 
     useEffect(() => {
         fetchUser()
-      }, [])
+    }, [])
 
     if (!email) {
         return <Navigate to={redirectPath} replace />;
     }
 
-    function get_best_score(){
-        let best_score = 0
-        for(let i=0;i<scores.length;i++){
-            if(scores[i]['score']>best_score){
-                best_score=scores[i]['score'];
-            }
-            console.log(best_score)
-        }
-    return best_score
+
+    let user_scores = []
+    for(let i=0;i<scores.length;i++){
+        user_scores.push(
+            <div className="dashboard_scores">
+            <p className="dashboard_game_name">{scores[i]['name']}</p>
+            <p className="dashboard_score">{scores[i]['score']}</p>
+            </div>
+        );
     }
 
     return <>
     <h1>Welcome, {user['name']}</h1>
-    <h1>Your total score in Numbers is {get_best_score()}</h1>
+    <h1>Your total scores:</h1>
+    {user_scores}
     </>
 }
 

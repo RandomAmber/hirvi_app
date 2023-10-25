@@ -27,7 +27,9 @@ INITIAL_DATA = {
       ],
       'game_rounds': [
           schemas.GameRoundBase(game_id=1, score=20, user_id=1),
-          schemas.GameRoundBase(game_id=1, score=10, user_id=2)
+          schemas.GameRoundBase(game_id=1, score=10, user_id=2),
+          schemas.GameRoundBase(game_id=2, score=55, user_id=1),
+          schemas.GameRoundBase(game_id=2, score=5, user_id=2),
       ]
 }
 

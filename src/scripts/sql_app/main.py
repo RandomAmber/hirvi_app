@@ -109,8 +109,7 @@ def read_game_rounds_user(game_id: int, db: Session = Depends(get_db)):
     return game_rounds
 
 @app.get("/leaderboard/{game_id}/{limit}")
-def read_leaderboard(game_id: int, limit:int, db: Session = Depends(get_db)):
-
+def read_game_leaderboard(game_id: int, limit:int, db: Session = Depends(get_db)):
     game_rounds = crud.get_game_leaderboard(db, game_id=game_id, limit=limit)
     return game_rounds
 
