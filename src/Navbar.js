@@ -4,19 +4,24 @@ import {useAuth} from './AuthProvider';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import logo from "./logo.png";
+import en_img from "./en.png";
+import ru_img from "./ru.png";
+import texts from "./text.json";
 
 export default function Navbar() {
 
     const {setAuth, auth, setUser, user} = useAuth();
     const navigate = useNavigate();
+    let language = localStorage.getItem('language');
+    language = language ? language : 'en';
+    language = JSON.parse(language)
+
+    let text = texts['Navbar']
 
     //const user = localStorage.getItem('user');
 
     let us = localStorage.getItem('user');
 
-    if (us=='null'){
-      us = null
-    }
     if (us){
         setUser(us);
         setAuth(true);
@@ -48,35 +53,44 @@ export default function Navbar() {
                 console.log('function')
             document.getElementById("myDropdown").classList.toggle("show");
         }
-        } class="dropbtn">Games</button>
+        } class="dropbtn">{text['Games'][language]}</button>
             <div id="myDropdown" class="dropdown-content">
                 <a href="/games/numbers">Numbers</a>
                 <a href="/games/hangman">Hangman</a>
                 <a href="/games/alchemy">Alchemy</a>
                 <a href="/games/affixes">Affixes</a>
             </div>
-            <CustomLink to="/grammar">Grammar</CustomLink>
-            <CustomLink to="/">Home</CustomLink>
+            <CustomLink to="/grammar">{text['Grammar'][language]}</CustomLink>
+            <CustomLink to="/">{text['Home'][language]}</CustomLink>
             {
                 us ? (
-                    <CustomLink to="/dashboard">Dashboard</CustomLink>
+                    <CustomLink to="/dashboard">{text['Dashboard'][language]}</CustomLink>
                 ):(
-                    <CustomLink to="/registration">Sign up</CustomLink>
+                    <CustomLink to="/registration">{text['Sign up'][language]}</CustomLink>
                 )
             }
             {us ? (
                     <li className=""><Link to="/"  onClick={()=>{
-                        localStorage.setItem('user', JSON.stringify(null));
+                        localStorage.removeItem('user');
                         setAuth(false);
                         setUser(null);
                         //navigate('/about');
                         console.log('SIGNED OUT')
-                    }}>Sign out</Link></li>
+                    }}>{text['Sign out'][language]}</Link></li>
                 
                 ) : (
-                    <CustomLink to="/login">Sign in</CustomLink>
+                    <CustomLink to="/login">{text['Sign in'][language]}</CustomLink>
                 )}
         </ul>
+        <img src={en_img} onClick={()=>{
+            localStorage.setItem('language', JSON.stringify('en'));
+            console.log(window.location.href.slice(21))
+            navigate(window.location.href.slice(21))
+        }} className="langlogo"></img>
+        <img src={ru_img} onClick={()=>{
+            localStorage.setItem('language', JSON.stringify('ru'));
+            navigate(window.location.href.slice(21))
+        }} className="langlogo"></img>
     </nav>
 }
 

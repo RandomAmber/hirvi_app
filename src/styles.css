@@ -311,3 +311,10 @@ body {
     top: 10rem;
     position: absolute;
 }
+
+.langlogo {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    padding: 0rem 0rem;
+}
