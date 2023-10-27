@@ -12,6 +12,13 @@ function RegistrationForm() {
     const [password,setPassword] = useState(null);
     const [confirmPassword,setConfirmPassword] = useState(null);
 
+    const [passwordValid, setPasswordValid] = useState(null);
+    const [passwordIsntNull, setPasswordIsntNull] = useState(null)
+    const [emailValid, setEmailValid] = useState(null);
+    const [emailIsntNull, setEmailIsntNull] = useState(null);
+    const [emailNotUsed, setEmailNotUsed] = useState(null);
+    const [nameIsntNull, setNameIsntNull] = useState(null);
+
     const handleInputChange = (e) => {
         const {id , value} = e.target;
         if(id === "name"){
@@ -59,33 +66,50 @@ function RegistrationForm() {
                 name:name,
         }
         var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        if (password==confirmPassword)  {
-            if(email.match(validRegex)){
-                if(name!=null){
-                    postData("http://127.0.0.1:8000/users/", obj).then(
-                        function(response){
-                            if (response['status'] == 200){
-                                postData("http://127.0.0.1:8000/send_email", 
-                                {email: email, password:password, name: name}
-                                ).then((data) => {console.log(data);});
-                                navigate("/login");
-                            }
-                            else{
-                                alert("Email has been registrated already, you can restore your password.")
-                            }
-                        },function(error) {console.log(error)}
-                    );
-                }
-                else{
-                    alert("Tape your name!")
-                }
+
+        if (email){
+            setEmailIsntNull(true)
+            if (email.match(validRegex)){
+                setEmailValid(true)
             }
             else{
-                alert('Wrong email.')
+                setEmailValid(false)
             }
+        } else {
+            setEmailIsntNull(false)
+        }
+        if(password){
+            setPasswordIsntNull(true)
+            if (password==confirmPassword){
+                setPasswordValid(true)
+            }
+            else{
+                setPasswordValid(false)
+            }
+        } else {
+            setPasswordIsntNull(false)
+        }
+        if (name){
+            setNameIsntNull(true)
         }
         else{
-            alert('Password isnt the same. try again.')
+            setNameIsntNull(false)
+        }
+
+        if (emailIsntNull && emailValid && nameIsntNull && passwordValid && passwordIsntNull){
+            postData("http://127.0.0.1:8000/users/", obj).then(
+                function(response){
+                    if (response['status'] == 200){
+                        postData("http://127.0.0.1:8000/send_email", 
+                        {email: email, password:password, name: name}
+                        ).then((data) => {console.log(data);});
+                        navigate("/login");
+                    }
+                    else{
+                        setEmailNotUsed(false)
+                    }
+                },function(error) {console.log(error)}
+            );
         }
     }
 
@@ -93,23 +117,41 @@ function RegistrationForm() {
         <div className="form">
             <div className="form-body">
                 <div className="username">
+                    {
+                        (nameIsntNull==false) ? <p className='wrong-email'>Type your name</p> : ''
+                    }
                     <label className="form__label" for="name">Name </label>
                     <input className="form__input" type="text" value={name} onChange = {(e) => handleInputChange(e)} id="name" placeholder="Name"/>
                 </div>
                 <div className="email">
+                    {
+                        (emailValid==false) ? <p className='wrong-email'>Email isn't correct</p> : ''
+                    }
+                    {
+                        (emailIsntNull==false) ? <p className='wrong-email'>Set your email</p> : ''
+                    }
+                    {
+                        (emailNotUsed==false) ? <p className='wrong-email'>This email has been used</p> : ''
+                    }
                     <label className="form__label" for="email">Email </label>
                     <input  type="email" id="email" className="form__input" value={email} onChange = {(e) => handleInputChange(e)} placeholder="Email"/>
                 </div>
                 <div className="password">
+                    {
+                        (passwordIsntNull==false) ? <p className='wrong-password'>Set a password</p> : ''
+                    }
                     <label className="form__label" for="password">Password </label>
                     <input className="form__input" type="password"  id="password" value={password} onChange = {(e) => handleInputChange(e)} placeholder="Password"/>
                 </div>
                 <div className="confirm-password">
+                    {
+                        (passwordValid==false) ? <p className='wrong-password'>Password and Confirm password aren't the same</p> : ''
+                    }
                     <label className="form__label" for="confirmPassword">Confirm Password </label>
                     <input className="form__input" type="password" id="confirmPassword" value={confirmPassword} onChange = {(e) => handleInputChange(e)} placeholder="Confirm Password"/>
                 </div>
             </div>
-            <div class="footer">
+            <div class="register-div">
                 <button onClick={()=>handleSubmit()} type="submit" class="btn">Register</button>
             </div>
         </div>

@@ -11,6 +11,9 @@ function LoginForm() {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
 
+    const [passwordIsCorrect, setpasswordIsCorrect] = useState(null)
+    const [userExist, setUserExist] = useState(null);
+
     const handleInputChange = (e) => {
         const {id , value} = e.target;
         if(id === "email"){
@@ -30,30 +33,45 @@ function LoginForm() {
                 email:email,
                 password:password,
             }
-        //let response = getData("http://127.0.0.1:8000/users/"+email)
-        getData("http://127.0.0.1:8000/users/"+email).then(
-            function(response) {
-                console.log(response)
-                // add user check isnt null
-                if (response["password"] == password){
-                    localStorage.setItem('user', email);
-                    navigate('/dashboard')
-                }
-                else {
-                alert('Wrong password.')
-                }},
-            function(error) {console.log(error)}
-          );
+        if(email && password){
+            getData("http://127.0.0.1:8000/users/"+email).then(
+                function(response) {
+                    if('password' in response){
+                        console.log(response)
+                        // add user check isnt null
+                        if (response["password"] == password){
+                            localStorage.setItem('user', email);
+                            setpasswordIsCorrect(true)
+                            navigate('/dashboard')
+                        }
+                        else {
+                            setpasswordIsCorrect(false)
+                        }
+                    setUserExist(true)
+                    }
+                    else {
+                        setUserExist(false)
+                    }
+                },
+                function(error) {console.log(error)}
+            );
+        }
     }
 
     return(
         <div className="form">
             <div className="form-body">
                 <div className="email">
+                    {
+                        (userExist==false) ? <p className='wrong-email'>This email hasn't been registrated yet.</p> : ''
+                    }
                     <label className="form__label" for="email">Email </label>
                     <input  type="email" id="email" className="form__input" value={email} onChange = {(e) => handleInputChange(e)} placeholder="Email"/>
                 </div>
                 <div className="password">
+                    {
+                        (passwordIsCorrect==false) ? <p className='wrong-email'>Password isn't correct, you can restore it.</p> : ''
+                    }
                     <label className="form__label" for="password">Password </label>
                     <input className="form__input" type="password"  id="password" value={password} onChange = {(e) => handleInputChange(e)} placeholder="Password"/>
                 </div>

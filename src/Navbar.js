@@ -1,8 +1,6 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
 import { useNavigate, useLocation} from "react-router-dom";
 import logo from "./logo.png";
-import en_img from "./en.png";
-import ru_img from "./ru.png";
 import texts from "./text.json";
 
 export default function Navbar() {
@@ -39,6 +37,15 @@ export default function Navbar() {
 
     return <nav className="nav">
         <Link to='/' className="site-title"><img src={logo} className="logo"></img>Hirvi</Link>
+        <button onClick={()=>{
+            localStorage.setItem('language', JSON.stringify('en'));
+            console.log(location.pathname)
+            navigate(location.pathname)
+        }} className="langlogo">English</button>
+        <button onClick={()=>{
+            localStorage.setItem('language', JSON.stringify('ru'));
+            navigate(location.pathname)
+        }} className="langlogo">Русский</button>
         <ul>
         <button onClick={
             ()=>{
@@ -73,15 +80,6 @@ export default function Navbar() {
                     <CustomLink to="/login">{text['Sign in'][language]}</CustomLink>
                 )}
         </ul>
-        <img src={en_img} onClick={()=>{
-            localStorage.setItem('language', JSON.stringify('en'));
-            console.log(location.pathname)
-            navigate(location.pathname)
-        }} className="langlogo"></img>
-        <img src={ru_img} onClick={()=>{
-            localStorage.setItem('language', JSON.stringify('ru'));
-            navigate(location.pathname)
-        }} className="langlogo"></img>
     </nav>
 }
 
