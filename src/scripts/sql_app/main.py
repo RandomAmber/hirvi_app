@@ -133,8 +133,8 @@ def update_game_rounds(game_id: int, user_id: int, db: Session = Depends(get_db)
 templates = Jinja2Templates(directory="jinja_templates")
 
 @app.post("/contact/")
-def create_game_round(request: Request, message: Annotated[str, Form()], name: Annotated[str, Form()], db: Session = Depends(get_db)):
-    response = contact(message=message, user=name)
+def create_game_round(request: Request, message: Annotated[str, Form()], name: Annotated[str, Form()], mail: Annotated[str, Form()], db: Session = Depends(get_db)):
+    response = contact(message=message, user=name, mail=mail)
     return templates.TemplateResponse("contact.html", {"request": request, "name": name})
     #return RedirectResponse('http://localhost:3000/')
     

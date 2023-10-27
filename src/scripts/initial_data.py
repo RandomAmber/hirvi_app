@@ -15,7 +15,7 @@ def initialize_data():
 
 INITIAL_DATA = {
       'users': [
-          schemas.UserBase(email='strakovskaya.am@gmail.com', name='admin', password='12'),
+          #schemas.UserBase(email='strakovskaya.am@gmail.com', name='admin', password='12'),
           schemas.UserBase(email='randambery@gmail.com', name='admin2', password='12')
       ],
       'games': [

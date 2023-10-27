@@ -1,8 +1,5 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
-import { useNavigate} from "react-router-dom";
-import {useAuth} from './AuthProvider';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import { useNavigate, useLocation} from "react-router-dom";
 import logo from "./logo.png";
 import en_img from "./en.png";
 import ru_img from "./ru.png";
@@ -10,8 +7,9 @@ import texts from "./text.json";
 
 export default function Navbar() {
 
-    const {setAuth, auth, setUser, user} = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
+
     let language = localStorage.getItem('language');
     language = language ? language : 'en';
     language = JSON.parse(language)
@@ -20,15 +18,9 @@ export default function Navbar() {
 
     //const user = localStorage.getItem('user');
 
-    let us = localStorage.getItem('user');
+    let user = localStorage.getItem('user');
 
-    if (us){
-        setUser(us);
-        setAuth(true);
-    }
-
-    console.log('navbar auth'+us)
-    console.log('navbar auth'+auth)
+    console.log('navbar auth'+user)
     
     // Close the dropdown menu if the user clicks outside of it
     window.onclick = function(event) {
@@ -52,6 +44,7 @@ export default function Navbar() {
             ()=>{
                 console.log('function')
             document.getElementById("myDropdown").classList.toggle("show");
+            console.log(document.getElementById("myDropdown").classList)
         }
         } class="dropbtn">{text['Games'][language]}</button>
             <div id="myDropdown" class="dropdown-content">
@@ -60,21 +53,19 @@ export default function Navbar() {
                 <a href="/games/alchemy">Alchemy</a>
                 <a href="/games/affixes">Affixes</a>
             </div>
-            <CustomLink to="/grammar">{text['Grammar'][language]}</CustomLink>
+            <CustomLink to="/lessons">{text['Lessons'][language]}</CustomLink>
             <CustomLink to="/">{text['Home'][language]}</CustomLink>
             {
-                us ? (
+                user ? (
                     <CustomLink to="/dashboard">{text['Dashboard'][language]}</CustomLink>
                 ):(
                     <CustomLink to="/registration">{text['Sign up'][language]}</CustomLink>
                 )
             }
-            {us ? (
+            {user ? (
                     <li className=""><Link to="/"  onClick={()=>{
                         localStorage.removeItem('user');
-                        setAuth(false);
-                        setUser(null);
-                        //navigate('/about');
+                        navigate('/');
                         console.log('SIGNED OUT')
                     }}>{text['Sign out'][language]}</Link></li>
                 
@@ -84,12 +75,12 @@ export default function Navbar() {
         </ul>
         <img src={en_img} onClick={()=>{
             localStorage.setItem('language', JSON.stringify('en'));
-            console.log(window.location.href.slice(21))
-            navigate(window.location.href.slice(21))
+            console.log(location.pathname)
+            navigate(location.pathname)
         }} className="langlogo"></img>
         <img src={ru_img} onClick={()=>{
             localStorage.setItem('language', JSON.stringify('ru'));
-            navigate(window.location.href.slice(21))
+            navigate(location.pathname)
         }} className="langlogo"></img>
     </nav>
 }

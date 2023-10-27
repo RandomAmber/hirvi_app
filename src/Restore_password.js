@@ -27,7 +27,7 @@ function Restore() {
                     navigate('/login')
                 }
                 else {
-                alert("You hasn't been registered yet.")
+                alert("You haven't been registered yet.")
                 }},
             function(error) {console.log(error)}
           );

@@ -1,4 +1,3 @@
-import AuthProvider, {useAuth} from './AuthProvider';
 import { Route, Routes, Navigate, Outlet } from "react-router-dom";
 import React, {useState, useEffect} from 'react';
 import {getData} from './utiles.js';
@@ -8,12 +7,11 @@ function Dashboard() {
     const redirectPath = '/login'
 
     let email = localStorage.getItem('user')
-    if (email=='null'){
-        email = null
-    }
+
 
     const [user, setUser] = useState([])
     const [scores, setScores] = useState([])
+
     const fetchUser = async () => {
         const user = await getData("http://127.0.0.1:8000/users/"+email)
         setUser(user)
@@ -30,7 +28,6 @@ function Dashboard() {
     if (!email) {
         return <Navigate to={redirectPath} replace />;
     }
-
 
     let user_scores = []
     for(let i=0;i<scores.length;i++){

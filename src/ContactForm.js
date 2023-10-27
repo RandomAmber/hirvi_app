@@ -5,6 +5,8 @@ export default function ContactForm(){
         <div>
             <p>Name</p>
             <input name="name" id="name" type="text" autocomplete="off" className='name-area-contact' required />
+            <p>Email</p>
+            <input name="mail" id="mail" type="text" autocomplete="off" className='mail-area-contact' />
         </div>
         <p>Message</p>
         <div>

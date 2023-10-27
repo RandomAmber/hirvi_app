@@ -1,14 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import './styles.css';
 import { useNavigate} from "react-router-dom";
-import AuthProvider, {useAuth} from './AuthProvider';
 import {getData} from './utiles.js';
 
 
 function LoginForm() {
     
     let navigate = useNavigate();
-    const { auth, setAuth, user, setUser } = useAuth();
 
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
@@ -36,11 +34,9 @@ function LoginForm() {
         getData("http://127.0.0.1:8000/users/"+email).then(
             function(response) {
                 console.log(response)
+                // add user check isnt null
                 if (response["password"] == password){
                     localStorage.setItem('user', email);
-                    setAuth(true)
-                    setUser(email)
-                    console.log(user + 'signed in')
                     navigate('/dashboard')
                 }
                 else {
