@@ -65,9 +65,7 @@ export default function Navbar() {
             {
                 user ? (
                     <CustomLink to="/dashboard">{text['Dashboard'][language]}</CustomLink>
-                ):(
-                    <CustomLink to="/registration">{text['Sign up'][language]}</CustomLink>
-                )
+                ):''
             }
             {user ? (
                     <li className=""><Link to="/"  onClick={()=>{
