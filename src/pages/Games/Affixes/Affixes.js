@@ -2,13 +2,28 @@ import { useState, useEffect } from "react"
 import { Draggable, Droppable, DragDropContext } from "react-beautiful-dnd";
 import './Affixes.css';
 import wordData from "./AffixesData.json"
+import Button from "../Button";
+import Leaderboard from "../Leaderboard";
 
 const dataArray = Object.values(wordData)
+
+
 //Select a random data list
-
-
 const randomIndex = Math.floor(Math.random() * dataArray.length);
 const randomData = dataArray[randomIndex];
+
+//Shuffle the data:
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+shuffleArray(randomData);
+
+
+
 
 const WordHolders = {
   WordHolder1: {
@@ -75,6 +90,13 @@ const onDragEnd = (result, areas, setAreas) => {
 const wordsPerRow = 4
 
 
+//test buttons:
+
+const rules = () => {
+  alert("Button rules clicked!")
+}
+
+
 
 function Affixes() {
   const [areas, setAreas] = useState(WordHolders);
@@ -112,7 +134,7 @@ function Affixes() {
 
   const concatenateWords = () => {
     if (areas.WordHolder1.items.length === 1 && areas.WordHolder2.items.length === 1) {
-      const item1 = areas.WordHolder1.items.map((item) => item.content)
+      const item1 = areas.WordHolder1.items.map((item) => item.content_dict)
       const item1Translation = areas.WordHolder1.items.map((item) => item.translation)
       const item2 = areas.WordHolder2.items.map((item) => item.content)
       const item2Translation = areas.WordHolder2.items.map((item) => item.translation)
@@ -161,27 +183,27 @@ function Affixes() {
 
   return (
     <div className="mainContainer">
+      <div className="nameContainer">
+        <h1>Affix Alchemy</h1>
+      </div>
+      <div className="areasContainer">
+        
+
       <div className="leftArea">
-        <p>rules</p>
-        <p>leaderboard</p>
+      <Button className="button" label="rules" onClick={rules} />
+      <Leaderboard game_id={5} limit={5} />
+
       </div>
 
       <div className="centreContainer">
-        <h1 className="heading">Word Affixes</h1>
         <div className="gameContainer">
 
           <div className="gameArea">
             <DragDropContext onDragEnd={(result) => onDragEnd(result, areas, setAreas)}>
               <div className="heading">
-                {matchesConcats && <p>Such word exists! Press the button to make a new one:</p>
-                  && <button onClick={clearWordHolders}>Clear WordHolders</button>
+                {matchesConcats &&  areas.WordArea.items.length != 0 && <p>Such word exists! Press the button to make a new one:</p>
+                  && <button className="button" onClick={clearWordHolders}>Coin a new word</button>
                 }
-                {/* /* Check if WordArea is empty */}
-                {areas.WordArea.items.length === 0 && (
-                  <button onClick={() => window.location.reload()}>Reload Page</button>
-                )}
-
-
               </div>
 
 
@@ -196,7 +218,7 @@ function Affixes() {
                           {...provided.droppableProps}
                           ref={provided.innerRef}
                           style={{
-                            background: snapshot.isDraggingOver ? "pink" : "blue", //wordHolder 1 colors
+                            background: snapshot.isDraggingOver ? "#76778E" : "#E6EAF2" , //wordHolder 1 colors
                           }}
                         >
                           {areas.WordHolder1.items.map((item, index) => (
@@ -207,9 +229,7 @@ function Affixes() {
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
                                   style={{
-                                    backgroundColor: snapshot.isDragging
-                                      ? "red"
-                                      : "blue",
+
                                     ...provided.draggableProps.style,
                                   }}
                                 >
@@ -241,7 +261,7 @@ function Affixes() {
                           {...provided.droppableProps}
                           ref={provided.innerRef}
                           style={{
-                            background: snapshot.isDraggingOver ? "lightblue" : "lightgrey", // wordHolder2 colors
+                            background: snapshot.isDraggingOver ? "#76778E" : "#E6EAF2", // wordHolder2 colors
                           }}
                         >
                           {areas.WordHolder2.items.map((item, index) => (
@@ -252,9 +272,7 @@ function Affixes() {
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
                                   style={{
-                                    backgroundColor: snapshot.isDragging
-                                      ? "#263B4A"
-                                      : "#456C86",
+                                
                                     ...provided.draggableProps.style,
                                   }}
                                 >
@@ -279,7 +297,7 @@ function Affixes() {
                 {/* answerholder  */}
                 <div className="answerHolder" >
                   {matchesConcats &&  concat_translation }
-                  <div className="answerHolderWFT" 
+                  <div className="answerHolderInner" 
                   >
                     {combinedWord}
                   </div>
@@ -289,16 +307,24 @@ function Affixes() {
 
               </div>
               {/* Render WordArea */}
+              {areas.WordArea.items.length === 0 && (
+                  <div className="winnerWindow">
+                    <p>Good job!</p>
+                    <button className="button" onClick={() => window.location.reload()}>Reload Page</button>
+
+                  </div>
+              )}
+              {areas.WordArea.items.length != 0 && (
               <div className="wordArea" >
                 <p>Words to tinker with</p>
                 <div style={{ margin: 8 }}>
                   <Droppable droppableId="WordArea">
                     {(provided, snapshot) => (
-                      <div className="wordAreaWTF"
+                      <div className="wordAreaInnerAffix"
                         {...provided.droppableProps}
                         ref={provided.innerRef}
                         style={{
-                          background: snapshot.isDraggingOver ? "lightblue" : "lightgrey"}} //wordArea colors
+                          background: snapshot.isDraggingOver ? "#76778E" : "#E6EAF2"}} //wordArea colors
                       >
                         {areas.WordArea.items.map((item, index) => (
                           <Draggable key={item.id} draggableId={item.id} index={index}>
@@ -308,7 +334,7 @@ function Affixes() {
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
                                 style={{
-                                  backgroundColor: snapshot.isDragging ? "blue" : "red", //word colors!
+                                  
                                   ...provided.draggableProps.style,
                                 }}
                               >
@@ -323,6 +349,8 @@ function Affixes() {
                   </Droppable>
                 </div>
               </div>
+
+              )}
             </DragDropContext>
 
           </div>
@@ -335,9 +363,10 @@ function Affixes() {
 
       </div>
       <div className="rightArea">
-        <div className="scoring">
-          <span>Your score: {score} </span>
-        </div>
+      <div className="score_affix">
+            <h3>Your score: {score}</h3>
+            
+          </div>
         <div className="dict"></div>
         <p>Words you coined:</p>
         <ul>
@@ -346,6 +375,7 @@ function Affixes() {
           ))}
         </ul>
       </div>
+    </div>
     </div>
 
   );
