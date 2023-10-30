@@ -1,10 +1,12 @@
 
 export default function ContactForm(){
     return <>
-    <form action="https://public.herotofu.com/v1/9ba962e0-6cd4-11ee-95be-07c35b4ecd07" method="post" accept-charset="UTF-8">
+    <form action="http://127.0.0.1:8000/contact/" method="post" accept-charset="UTF-8">
         <div>
             <p>Name</p>
-            <input name="Name" id="name" type="text" autocomplete="off" className='name-area-contact' required />
+            <input name="name" id="name" type="text" autocomplete="off" className='name-area-contact' required />
+            <p>Email</p>
+            <input name="mail" id="mail" type="text" autocomplete="off" className='mail-area-contact' />
         </div>
         <p>Message</p>
         <div>

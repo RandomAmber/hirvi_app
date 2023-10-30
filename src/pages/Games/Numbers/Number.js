@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './numbers.css'
-import {getData, postData} from '../../../utiles.js' 
+import {getData, patchData, postData} from '../../../utiles.js' 
 
-export default function Number({ button_count, max_level}) {
+export default function Number({button_count}) {
+
+    let email = localStorage.getItem('user')
 
     var max_number = 100
 
@@ -17,8 +19,13 @@ export default function Number({ button_count, max_level}) {
 
     const [level, setLevel] = useState({
         level: 1,
-        score: 0
-      });
+        score: 0,
+        total_score: 0
+    });
+
+    const [downloadScore, setDownloadScore] = useState({
+        state: true
+    })
 
     const playSound = () => {
         sound.play();
@@ -34,6 +41,32 @@ export default function Number({ button_count, max_level}) {
             </div>
             
         );
+    }
+    if (downloadScore.state){
+        if (email && (email!='null')){
+            getData("http://127.0.0.1:8000/users/"+email).then(
+                function(response) {
+                    if (response['id']){
+                        getData("http://127.0.0.1:8000/game_rounds/"+1+"/"+response['id']).then(
+                            function(response) {
+                                console.log("HERE")
+                                console.log(response)
+                                if(response['score']){
+                                    setLevel({
+                                        level: level.level,
+                                        score: level.score,
+                                        total_score: response['score']
+                                    });
+                                    setDownloadScore({state: false});
+                                }
+                            },
+                            function(error) {console.log(error)}
+                        )
+                    }
+                },
+                function(error) {console.log(error)}
+            );
+        }
     }
 
 
@@ -55,15 +88,35 @@ export default function Number({ button_count, max_level}) {
         alert('That\'s right!');
         setLevel({
             level: level.level + 1,
-            score: level.score + 1
+            score: level.score + 1,
+            total_score: level.total_score + 1,
         });
+        if (email && (email!='null')){
+            getData("http://127.0.0.1:8000/users/"+email).then(
+                function(response) {
+                    console.log(response)
+                    if (response['id']){
+                        let obj = {
+                            user_id: response['id'],
+                            score: level.score,
+                            game_id: 1
+                        }
+                        //postData("http://127.0.0.1:8000/game_rounds/", obj)
+                        //game_rounds/{game_id}/{user_id}
+                        patchData("http://127.0.0.1:8000/game_rounds/"+1+"/"+response['id'])
+                    }
+                },
+                function(error) {console.log(error)}
+              );
+        }
     }
 
     function handleWrongClick(){
         alert('Wrong answer =(');
         setLevel({
             level: level.level + 1,
-            score: level.score
+            score: level.score,
+            total_score: level.total_score
         });
     }
 
@@ -89,34 +142,12 @@ export default function Number({ button_count, max_level}) {
             buttons.push(<Button number={arr[i]} onClick={handleWrongClick}/>)
         }
     }
-    if (level.level > max_level){
-        let email = localStorage.getItem('user')
-        console.log(email)
-        console.log('oh')
-        if (email && (email!='null')){
-            getData("http://127.0.0.1:8000/users/"+email).then(
-                function(response) {
-                    console.log(response)
-                    if (response['id']){
-                        let obj = {
-                            user_id: response['id'],
-                            score: level.score,
-                            game_id: 1
-                        }
-                        postData("http://127.0.0.1:8000/game_rounds/", obj)
-                    }
-                },
-                function(error) {console.log(error)}
-              );
-        }
-        return <p>This is the end of the game. Your final score is {level.score} of {level.level-1}</p>
-    }
-    else{
-        return <>
-        <p className='score'>Score: {level.score}</p>
-        <p className='level'>Level: {level.level} of {max_level}</p>
+
+    return <>
+        <p className='score'>Current score: {level.score}</p>
+        <p className='level'>Total score: {level.total_score}</p>
+
         {Player({sound})}
         {buttons} 
         </>
-    }
-  }
+}

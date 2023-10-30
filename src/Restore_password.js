@@ -27,23 +27,25 @@ function Restore() {
                     navigate('/login')
                 }
                 else {
-                alert("You hasn't been registered yet.")
+                alert("You haven't been registered yet.")
                 }},
             function(error) {console.log(error)}
           );
     }
 
     return(
+        <div className="form-container">
         <div className="form">
-            <div className="form-body">
+            <div className="body-form">
+            <p className='header'>Restore your password</p>
                 <div className="email">
-                    <label className="form__label" for="email">Email </label>
                     <input  type="email" id="email" className="form__input" value={email} onChange = {(e) => handleInputChange(e)} placeholder="Email"/>
                 </div>
             </div>
             <div class="button-login">
                 <button onClick={()=>handleSubmit()} type="submit" class="btn">Send email</button>
             </div>
+        </div>
         </div>
         
     )       

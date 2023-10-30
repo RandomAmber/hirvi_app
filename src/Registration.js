@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './styles.css'
+import './css/Login.css'
 import { useNavigate } from "react-router-dom";
 
 
@@ -11,6 +11,13 @@ function RegistrationForm() {
     const [email, setEmail] = useState(null);
     const [password,setPassword] = useState(null);
     const [confirmPassword,setConfirmPassword] = useState(null);
+
+    const [passwordValid, setPasswordValid] = useState(null);
+    const [passwordIsntNull, setPasswordIsntNull] = useState(null)
+    const [emailValid, setEmailValid] = useState(null);
+    const [emailIsntNull, setEmailIsntNull] = useState(null);
+    const [emailNotUsed, setEmailNotUsed] = useState(null);
+    const [nameIsntNull, setNameIsntNull] = useState(null);
 
     const handleInputChange = (e) => {
         const {id , value} = e.target;
@@ -59,59 +66,93 @@ function RegistrationForm() {
                 name:name,
         }
         var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        if (password==confirmPassword)  {
-            if(email.match(validRegex)){
-                if(name!=null){
-                    postData("http://127.0.0.1:8000/users/", obj).then(
-                        function(response){
-                            if (response['status'] == 200){
-                                postData("http://127.0.0.1:8000/send_email", 
-                                {email: email, password:password, name: name}
-                                ).then((data) => {console.log(data);});
-                                navigate("/login");
-                            }
-                            else{
-                                alert("Email has been registrated already, you can restore your password.")
-                            }
-                        },function(error) {console.log(error)}
-                    );
-                }
-                else{
-                    alert("Tape your name!")
-                }
+
+        if (email){
+            setEmailIsntNull(true)
+            if (email.match(validRegex)){
+                setEmailValid(true)
             }
             else{
-                alert('Wrong email.')
+                setEmailValid(false)
             }
+        } else {
+            setEmailIsntNull(false)
+        }
+        if(password){
+            setPasswordIsntNull(true)
+            if (password==confirmPassword){
+                setPasswordValid(true)
+            }
+            else{
+                setPasswordValid(false)
+            }
+        } else {
+            setPasswordIsntNull(false)
+        }
+        if (name){
+            setNameIsntNull(true)
         }
         else{
-            alert('Password isnt the same. try again.')
+            setNameIsntNull(false)
+        }
+
+        if (emailIsntNull && emailValid && nameIsntNull && passwordValid && passwordIsntNull){
+            postData("http://127.0.0.1:8000/users/", obj).then(
+                function(response){
+                    if (response['status'] == 200){
+                        postData("http://127.0.0.1:8000/send_email", 
+                        {email: email, password:password, name: name}
+                        ).then((data) => {console.log(data);});
+                        navigate("/login");
+                    }
+                    else{
+                        setEmailNotUsed(false)
+                    }
+                },function(error) {console.log(error)}
+            );
         }
     }
 
     return(
+        <div className='form-container'>
         <div className="form">
-            <div className="form-body">
+            <div className="body-form">
+            <p className='header'>Registration</p>
                 <div className="username">
-                    <label className="form__label" for="name">Name </label>
+                    {
+                        (nameIsntNull==false) ? <p className='validation'>Type your name</p> : ''
+                    }
                     <input className="form__input" type="text" value={name} onChange = {(e) => handleInputChange(e)} id="name" placeholder="Name"/>
                 </div>
                 <div className="email">
-                    <label className="form__label" for="email">Email </label>
+                    {
+                        (emailValid==false) ? <p className='validation'>Email isn't correct</p> : ''
+                    }
+                    {
+                        (emailIsntNull==false) ? <p className='validation'>Set your email</p> : ''
+                    }
+                    {
+                        (emailNotUsed==false) ? <p className='validation'>This email has been used</p> : ''
+                    }
                     <input  type="email" id="email" className="form__input" value={email} onChange = {(e) => handleInputChange(e)} placeholder="Email"/>
                 </div>
                 <div className="password">
-                    <label className="form__label" for="password">Password </label>
+                    {
+                        (passwordIsntNull==false) ? <p className='validation'>Set a password</p> : ''
+                    }
                     <input className="form__input" type="password"  id="password" value={password} onChange = {(e) => handleInputChange(e)} placeholder="Password"/>
                 </div>
                 <div className="confirm-password">
-                    <label className="form__label" for="confirmPassword">Confirm Password </label>
+                    {
+                        (passwordValid==false) ? <p className='validation'>Password and Confirm password aren't the same</p> : ''
+                    }
                     <input className="form__input" type="password" id="confirmPassword" value={confirmPassword} onChange = {(e) => handleInputChange(e)} placeholder="Confirm Password"/>
                 </div>
             </div>
-            <div class="footer">
-                <button onClick={()=>handleSubmit()} type="submit" class="btn">Register</button>
+            <div class="register-div">
+                <button onClick={()=>handleSubmit()} type="submit" class="btn">Submit</button>
             </div>
+        </div>
         </div>
         
     )       

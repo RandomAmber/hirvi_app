@@ -1,0 +1,35 @@
+{
+        "Navbar":{
+            "Games": {
+                "en":"Games",
+                "ru": "Игры"
+            },
+            "Lessons" : {
+                "en": "Lessons",
+                "ru": "Материалы"
+            },
+            "Home" : {
+                "en": "Home",
+                "ru": "Главная"
+            },
+            "Dashboard" : {
+                "en": "Dashboard",
+                "ru": "Личный кабинет"
+            },
+            "Sign out" : {
+                "en": "Sign out",
+                "ru": "Выйти"
+            },
+            "Sign in" : {
+                "en": "Sign in",
+                "ru": "Войти"
+            },
+            "Sign up" : {
+                "en": "Sign up",
+                "ru": "Зарегестрироваться"
+            }
+        },
+        "Numbers": {
+
+        }
+}

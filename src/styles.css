@@ -43,9 +43,10 @@ body {
 }
 
 .nav {
-  background-color: var(--main-light-color);
-  color: var(--main-dark-color);
-  font-weight: 700;
+  background-color: #D9D9D9;
+  color: #004F52;
+  font-weight: 500;
+  font-family: 'Helvetica';
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -108,6 +109,7 @@ body {
   background-color: var(--main-light-color);
   color: var(--main-dark-color);
   border: none;
+  font-family: 'Helvetica';
 }
 
 
@@ -148,6 +150,11 @@ body {
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
+.Drop_lesson {
+  display:none;
+}
+.Drop_lesson .show {display:block;}
 
 .foot {
   position:absolute;
@@ -322,6 +329,15 @@ body {
     height: 2.5rem;
 }
 
-.site-title-text {
-  color: var(--main-dark-color);
+.leaderboard {
+    left: 2rem;
+    top: 10rem;
+    position: absolute;
+}
+
+.langlogo {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    padding: 0rem 0rem;
 }
