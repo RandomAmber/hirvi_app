@@ -1,14 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-}
 
 .gameArea {
     display: flex;
@@ -26,71 +17,40 @@ body {
     width: 150px;
     min-height: 20px;
     overflow: auto;
-    margin: 30px auto;
-    border: 1px solid red;
-    padding: 30px;
+    margin: 1rem;
+    border: 1px solid #A3ABC0;
+    padding: 0.5rem;
     border-radius: 5px;
 }
 
 .wordsArea {
-    width: 500px;
+    width: 00px;
     margin: 30px auto;
     overflow: auto;
     min-height: 400px;
-    border: 1px solid green;
+    border: 5px solid;
     padding: 30px;
     border-radius: 5px;
-    background-color: aquamarine;
 }
 
-.word-box {
-    border: 1px solid pink;
+/* .word-box {
     padding: 5px;
     margin: 50px;
+    color: red;
     display: inline-block;
-}
+} */
 
 .heading {
     text-align: center;
 }
 
-.word-container {
+/* .word-container {
     text-align: center;
     padding: 5px;
     background-color: rgb(0, 247, 255);
     cursor: pointer;
   }
-  
-
-
-.mainContainer {
-    margin-left: 20px;
-    margin-right: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.leftArea {
-    background-color: red;
-}
-
-.rightArea {
-    background-color: red;
-    margin: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.gameContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
-}
-
+   */
 
 
 .scoring {
@@ -98,12 +58,6 @@ body {
 
 }
 
-.dict {
-    background-color: red;
-    padding: 4px;
-    display: flex;
-    flex-direction: column;
-}
 
 
 .wordHolders {
@@ -131,15 +85,20 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 8px;
 
 }
 
-.answerHolderWFT {
-    min-height: 70px;
-    background-color: lightblue; 
+.answerHolderInner {
+    min-height: 50px;
+    background-color: #9BD0D6; 
     padding: 4px;
-    width: 200px;
+    width: auto;
+    min-width: 150px;
+    border: 1px solid #A3ABC0;
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin: 1rem;
+    
 
 }
 
@@ -150,14 +109,15 @@ body {
 
 }
 
-.wordAreaWTF {
+.wordAreaInner {
     padding: 4px;
-    max-width: 500px;
-    min-height: 300px;
+    max-width: 40rem;
+    height: 300px;
     overflow-y: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+    justify-content: center;
 
 }
 
@@ -166,9 +126,20 @@ body {
     padding: 10px;
     margin: 0px 4px 4px 0px;
     min-width: 50px;
-    max-height: 80px;
-    color: white;
-    background-color: red;
+    max-height: 60px;
+    color: #261725;
+    background-color: #98D0D6;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     
 
 }
+
+
+.dict {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    }
+    

@@ -1,80 +1,107 @@
 {
-    "1": [
+    "adj1": [
     {
       "id": "1",
-      "content": "cat",
-      "concats": ["catrat", "catblood"],
-      "concats_translation": ["котокрыса", "котокровь"],
-      "translation": "кошка"
+      "content": "keski",
+      "concats": ["keskiluokkainen"],
+      "concats_translation": ["middle class"],
+      "translation": "middle"
     },
     {
       "id": "2",
-      "content": "dog",
-      "concats": ["dograt", "dogblood"],
-      "concats_translation": ["песокрыс", "песокровь"],
-      "translation": "собака"
+      "content": "korkea",
+      "concats": ["korkealaatuinen", "korkeapaineinen"],
+      "concats_translation": ["high quality", "high-pressure"],
+      "translation": "high"
+    },
+    {
+      "id": "14",
+      "content": "korkea",
+      "concats": ["korkealaatuinen", "korkeapaineinen"],
+      "concats_translation": ["high quality", "high-pressure"],
+      "translation": "high"
     },
     {
       "id": "3",
-      "content": "rat",
-      "concats": ["ratblood"],
-      "translation": "крыса",
-      "concats_translation": ["крысокровь"]
+      "content": "kova",
+      "concats": ["kovakantinen"],
+      "translation": "hard",
+      "concats_translation": ["hardcover"]
     },
     {
       "id": "4",
-      "content": "mouse",
-      "concats": ["mouseblouse"],
-      "translation": "мышь",
-      "concats_translation": ["мышеблузка"]
+      "content": "kuuma",
+      "concats": ["kuumaverinen"],
+      "translation": "hot",
+      "concats_translation": ["passionate"]
     },
     {
       "id": "5",
-      "content": "blouse",
-      "concats": [],
-      "translation": "блузка"
+      "content": "lyhyt",
+      "concats": ["lyhythihainen"],
+      "translation": "short",
+      "concats_translation": ["short-sleeved"]
     },
     {
       "id": "6",
-      "content": "blood",
-      "concats": [],
-      "translation": "КРОВИЩА"
-    }
-  ],
-  "2":
-  [
+      "content": "matala",
+      "concats": ["matalapaineinen"],
+      "translation": "low",
+      "concats_translation": ["low-pressure"]
+    },
     {
       "id": "7",
-      "content": "mat",
-      "concats": ["matbed", "matled"]
+      "content": "luokkainen",
+      "concats": ["keskiluokkainen"],
+      "translation": "class(adj)",
+      "concats_translation": ["middle class"]
     },
     {
       "id": "8",
-      "content": "bed",
-      "concats": ["bedled", "bedlet"]
+      "content": "laatuinen",
+      "concats": ["korkealaatuinen"],
+      "concats_translation": ["high quality"],
+      "translation": "quality+adj"
     },
     {
       "id": "9",
-      "content": "let",
-      "concats": ["bedlet", "redlet"]
+      "content": "paineinen",
+      "concats": ["korkeapaineinen", "matalapaineinen"],
+      "concats_translation": ["high-pressure", "low-pressure"],
+      "translation": "pressure+adj"
     },
     {
       "id": "10",
-      "content": "led",
-      "concats": ["matbed"]
+      "content": "kantinen",
+      "concats": ["kovakantinen"],
+      "translation": "cover+adj",
+      "concats_translation": ["hardcover"]
     },
     {
       "id": "11",
-      "content": "red",
-      "concats": ["redlet"]
+      "content": "verinen",
+      "concats": ["kuumaverinen"],
+      "translation": "blood+adj",
+      "concats_translation": ["passionate"]
     },
     {
       "id": "12",
-      "content": "ted",
-      "concats": ["tedred", "tedlet"]
+      "content": "hihainen",
+      "concats": ["lyhythihainen"],
+      "translation": "sleeve+adj",
+      "concats_translation": ["short-sleeved"]
+    },
+    {
+      "id": "13",
+      "content": "paineinen",
+      "concats": ["korkeapaineinen", "matalapaineinen"],
+      "concats_translation": ["high-pressure", "low-pressure"],
+      "translation": "pressure+adj"
     }
+
   ],
-  "adj1": [
+
+  "adj2": [
     {
       "id": "13",
       "content": "ala",
@@ -188,6 +215,202 @@
       "translation": "based"
     }
 
+  ],
+  "adj3": [
+    {
+      "id": "29",
+      "content": "moni",
+      "concats": ["monikulttuurinen", "monivaiheinen"],
+      "concats_translation": ["multucultural", "multiphase"],
+      "translation": "many"
+    },
+    {
+      "id": "30",
+      "content": "moni",
+      "concats": ["monikulttuurinen", "monivaiheinen"],
+      "concats_translation": ["multucultural", "multiphase"],
+      "translation": "many"
+    },
+    {
+      "id": "31",
+      "content": "nopea",
+      "concats": ["nopeatahtinen", "nopealiikkeinen"],
+      "concats_translation": ["fast-paced", "fast moving"],
+      "translation": "fast"
+    },
+    {
+      "id": "32",
+      "content": "nopea",
+      "concats": ["nopeatahtinen", "nopealiikkeinen"],
+      "concats_translation": ["fast-paced", "fast moving"],
+      "translation": "fast"
+    },
+    {
+      "id": "33",
+      "content": "normaali",
+      "concats": ["normaalipainoinen"],
+      "translation": "normal",
+      "concats_translation": ["normal-weight"]
+    },
+    {
+      "id": "34",
+      "content": "pitkä",
+      "concats": ["pitkäaikeinen", "pitkähihainen", "pitkäjalkainen"],
+      "concats_translation": ["prolonged", "long-sleeved", "long-legged"],
+      "translation": "long"
+    },
+    {
+      "id": "50",
+      "content": "pitkä",
+      "concats": ["pitkäaikeinen", "pitkähihainen", "pitkäjalkainen"],
+      "concats_translation": ["prolonged", "long-sleeved", "long-legged"],
+      "translation": "long"
+    },
+    {
+      "id": "51",
+      "content": "pitkä",
+      "concats": ["pitkäaikeinen", "pitkähihainen", "pitkäjalkainen"],
+      "concats_translation": ["prolonged", "long-sleeved", "long-legged"],
+      "translation": "long"
+    },
+    {
+      "id": "35",
+      "content": "pyöreä",
+      "concats": ["pyöreäkasvoinen", "pyöreäsilmäinen"],
+      "concats_translation": ["round-faced", "round-eyed"],
+      "translation": "round"
+    },
+    {
+      "id": "49",
+      "content": "pyöreä",
+      "concats": ["pyöreäkasvoinen", "pyöreäsilmäinen"],
+      "concats_translation": ["round-faced", "round-eyed"],
+      "translation": "round"
+    },
+    {
+      "id": "36",
+      "content": "suklaa",
+      "concats": ["suklaakuorrutteinen", "suklaatäytteinen"],
+      "concats_translation": ["chocolate coated", "chocolate filled"],
+      "translation": "chocolate"
+    },
+    {
+      "id": "37",
+      "content": "kulttuurinen",
+      "concats": ["monikulttuurinen"],
+      "concats_translation": ["multucultural"],
+      "translation": "culture+adj"
+    },
+    {
+      "id": "38",
+      "content": "vaiheinen",
+      "concats": ["monivaiheinen"],
+      "concats_translation": ["multiphase"],
+      "translation": "phase+adj"
+    },
+    {
+      "id": "39",
+      "content": "tahtinen",
+      "concats": ["nopeatahtinen"],
+      "concats_translation": ["fast-paced"],
+      "translation": "pace"
+    },
+    {
+      "id": "40",
+      "content": "liikkeinen",
+      "concats": ["nopealiikkeinen"],
+      "concats_translation": ["fast moving"],
+      "translation": "movement"
+    },
+    {
+      "id": "41",
+      "content": "painoinen",
+      "concats": ["normaalipainoinen"],
+      "translation": "weight+adj",
+      "concats_translation": ["normal-weight"]
+    },
+    {
+      "id": "42",
+      "content": "aikeinen",
+      "concats": ["pitkäaikeinen"],
+      "concats_translation": ["prolonged"],
+      "translation": "time+adj"
+    },
+    {
+      "id": "43",
+      "content": "hihainen",
+      "concats": ["pitkähihainen"],
+      "concats_translation": ["long-sleeved"],
+      "translation": "sleeve+adj"
+    },
+    {
+      "id": "44",
+      "content": "jalkainen",
+      "concats": ["pitkäjalkainen"],
+      "concats_translation": ["long-legged"],
+      "translation": "leg+adj"
+    },
+    {
+      "id": "45",
+      "content": "kasvoinen",
+      "concats": ["pyöreäkasvoinen"],
+      "concats_translation": ["round-faced"],
+      "translation": "face+adj"
+    },
+    {
+      "id": "46",
+      "content": "silmäinen",
+      "concats": ["pyöreäsilmäinen"],
+      "concats_translation": ["round-eyed"],
+      "translation": "eyed"
+    },
+    {
+      "id": "47",
+      "content": "kuorrutteinen",
+      "concats": ["suklaakuorrutteinen"],
+      "concats_translation": ["chocolate coated"],
+      "translation": "coated"
+    },
+    {
+      "id": "48",
+      "content": "täytteinen",
+      "concats": ["suklaatäytteinen"],
+      "concats_translation": ["chocolate filled"],
+      "translation": "filled"
+    }
+
+  ], 
+  "test": [
+    {
+      "id": "52",
+      "content": "elo",
+      "concats": ["elokuva"],
+      "concats_translation": ["film"],
+      "translation": "life"
+    },
+    {
+      "id": "53",
+      "content": "kuva",
+      "concats": ["elokuva", "valokuva"],
+      "concats_translation": ["film", "photo"],
+      "translation": "picture"
+    },
+    {
+      "id": "54",
+      "content": "kuva",
+      "concats": ["elokuva", "valokuva"],
+      "concats_translation": ["film", "photo"],
+      "translation": "picture"
+    },
+    {
+      "id": "55",
+      "content": "valo",
+      "concats": ["valokuva"],
+      "concats_translation": ["photo"],
+      "translation": "light"
+    }
+
   ]
+
 
 }
