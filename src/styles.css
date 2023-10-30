@@ -335,7 +335,7 @@ body {
 .leaderboard {
     left: 2rem;
     top: 10rem;
-    position: absolute;
+    /* position: absolute; */
 }
 
 .langlogo {
