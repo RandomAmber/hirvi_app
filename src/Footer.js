@@ -1,6 +1,6 @@
 import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom"
-import git from './git.png';
-import mail from './mail.png';
+import git from './img/git.png';
+import mail from './img/mail.png';
 
 
 export default function Footer() {

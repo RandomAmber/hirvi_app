@@ -1,7 +1,8 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
 import { useNavigate, useLocation} from "react-router-dom";
-import logo from "./logo.png";
+import logo from "./img/logo.png";
 import texts from "./text.json";
+import './css/Navbar.css';
 
 export default function Navbar() {
 
