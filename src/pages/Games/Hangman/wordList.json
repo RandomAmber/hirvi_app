@@ -1,20 +1,39 @@
 [
     {
-        "name": "ruoka",
+        "name": "vihannekset",
         "words": [
-            "pizza",
+            "herne",
             "kurkku",
-            "suklaa"
+            "kaali",
+            "kurpitsa",
+            "kesäkurpitsa",
+            "maissi", 
+            "munakoiso",
+            "peruna",
+            "tomaatti",
+            "sipuli",
+            "valkosipuli",
+            "porkkana"
         ]
     },
     {
         "name": "juoma",
         "words": [
-            "tee",
-            "kahvi",
-            "maito"
+          "tee",
+          "kahvi",
+          "maito",
+          "limonadi",
+          "vesi",
+          "olut",
+          "viini",
+          "mehu",
+          "kaakao",
+          "glögi",
+          "alkoholi",
+          "siideri"
         ]
-    },
+      },
+      
     {
         "name": "kielet",
         "words": [

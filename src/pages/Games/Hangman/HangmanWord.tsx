@@ -11,7 +11,6 @@ export function HangmanWord({guessedLetters, wordToGuess, reveal = false}: Hangm
     return (
     <div style={{
         display: "flex",
-
         gap: ".25em",
         fontSize: "4rem",
         fontWeight: "bold",

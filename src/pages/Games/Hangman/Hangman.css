@@ -1,35 +1,9 @@
-.mainContainer {
-    margin-left: 20px;
-    margin-right: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-
-.centreContainer {
-    flex-grow: 2;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin: 0 auto;
-    align-items: center;
-}
-
-.gameContainer {
-    font-size: 2rem;
-    text-align: center;
-}
-
 .hangmanArea {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
-
 
 .manSpace {
     margin-left: 8rem;
@@ -39,31 +13,14 @@
     align-self: stretch;
 }
 
-.leftArea {
-    flex-grow: 1;
-    margin-right: 30px;
-
+.endGameMessage {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
+    align-items: flex-start;
 }
 
-.rightArea {
-    flex-grow: 1;
-    margin-left: 30px;
+.endGameMessage p {
+    padding-right: 2rem;
 }
 
-.button {
-    font-size: 1rem;
-    padding: 0.5rem;
-    min-width: 5rem;
-    min-height: 3rem;
-    text-align: center;
-    cursor: pointer;
-    background-color: #004F52;
-    color: white;
-    border: none;
-    border-radius: 10px;
-}
 

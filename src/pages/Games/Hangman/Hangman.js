@@ -7,7 +7,8 @@ import { HangmanDrawing, BODY_PARTS } from "./HangmanDrawing.tsx"
 import { HangmanWord } from "./HangmanWord.tsx"
 import { Keyboard } from "./Keyboard.tsx"
 import "./Hangman.css"
-import Button from "./Button"
+import Button from "../Button"
+import Leaderboard from "../Leaderboard"
 
 function getWord(sectionIndex) {
   const section = wordsData[sectionIndex]
@@ -20,6 +21,11 @@ function Hangman() {
   const randomLetter = () => {
     alert("Button randomLetter clicked!")
   }
+
+  const hint = () => {
+    alert("Button hint clicked!")
+  }
+
   const newGame = () => {
     setGuessLetters([])
     setWordToGuess(getWord(selectedSection))
@@ -80,67 +86,80 @@ function Hangman() {
 
   return (
     <div className="mainContainer">
-      <div className="leftArea">
-        <p>Leaderboard</p>
-        <Button className="button" label="rules" onClick={rules} />
+      <div className="nameContainer">
+        <h1>Hangman</h1>
+      </div>
+      <div className="areasContainer">
+        <div className="leftArea">
+          <Button className="button" label="rules" onClick={rules} />
+          <Leaderboard game_id={3} limit={5} />
+        </div>
 
+        <div className="centreContainer">
+
+          <div className="gameContainer">
+
+            {isWinner && (
+              <div className="endGameMessage">
+                <p>Great job!</p>
+                <Button className="button" label="new game" onClick={newGame} />
+                </div>
+            )}
+            {isLoser && (
+              <div className="endGameMessage">
+                <p>Nice try!</p>
+                <Button className="button" label="new game" onClick={newGame} />
+                </div>
+            )}
+          </div>
+          <div className="hangmanArea">
+            <HangmanDrawing numberOfGuesses={inCorrectLetters.length} />
+            <div className="manSpace" />
+            <HangmanWord
+              reveal={isLoser}
+              guessedLetters={guessedLetters} wordToGuess={wordToGuess} />
+
+          </div>
+          <div className="keyboard">
+            <Keyboard
+              disabled={isWinner || isLoser}
+              activeLetters={guessedLetters.filter(letter => wordToGuess.includes(letter))}
+              inactiveLetters={inCorrectLetters}
+              addGuessedLetter={addGuessedLetter} />
+          </div>
+
+
+
+        </div>
+        <div className="rightArea">
+        <div className="score_hangman">
+          <h3>Your score:</h3>
+          </div>
+          <Button className="button" label="random letter" onClick={randomLetter} />
+          <Button className="button" label="hint" onClick={hint} />
+          
+        
+          <div className="wordSelection">
+            <label htmlFor="selectionSelect">Select a word section </label>
+            <select
+              id="sectionSelect"
+              className="styled-select"
+              onChange={(e) => handleSectionChange(e.target.value)}
+              value={selectedSection}>
+              {wordsData.map((section, index) => (
+                <option key={index} value={index}>
+                  {section.name}
+                </option>
+              ))}
+
+            </select>
+          </div>
+
+
+        </div>
 
       </div>
 
-      <div className="centreContainer">
-
-        <div className="gameContainer">
-          <h3>Hangman</h3>
-
-          {isWinner && <span>
-            Great job!
-            <Button className="button" label="new game" onClick={newGame} /> 
-          </span>}
-          {isLoser && <span>
-            Nice try! 
-            <Button className="button" label="new game" onClick={newGame} /> 
-          </span>}
-        </div>
-        <div className="hangmanArea">
-          <HangmanDrawing numberOfGuesses={inCorrectLetters.length} />
-          <div className="manSpace" />
-          <HangmanWord
-            reveal={isLoser}
-            guessedLetters={guessedLetters} wordToGuess={wordToGuess} />
-
-        </div>
-        <div className="keyboard">
-          <Keyboard
-            disabled={isWinner || isLoser}
-            activeLetters={guessedLetters.filter(letter => wordToGuess.includes(letter))}
-            inactiveLetters={inCorrectLetters}
-            addGuessedLetter={addGuessedLetter} />
-        </div>
-
-
-
-      </div>
-      <div className="rightArea">
-        <p>Score</p>
-        <Button className="button" label="random letter" onClick={randomLetter} />
-        <div className="wordSelection">
-          <label htmlFor="selectionSelect">Select a word section </label>
-          <select
-            id="sectionSelect"
-            className="styled-select"
-            onChange={(e) => handleSectionChange(e.target.value)}
-            value={selectedSection}>
-            {wordsData.map((section, index) => (
-              <option key={index} value={index}>
-                {section.name}
-              </option>
-            ))}
-
-          </select>
-        </div>
-
-
-      </div>
 
     </div>
 
