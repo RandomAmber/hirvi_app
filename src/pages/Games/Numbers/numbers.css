@@ -1,7 +1,7 @@
 .sound-button {
-    background-color: #E01A4F;
+    background-color: #98D0D6;
     height: 3rem;
-    color: white;
+    color: #261725;
     width: 7rem;
     font-size: 1.5rem;
     border:none;
@@ -10,8 +10,8 @@
 }
 
 .number-button {
-    background-color: #E01A4F;
-    color: whitesmoke;
+    background-color: #E6EAF2;
+    color: #261725;
     height: 4rem;
     width: 10rem;
     font-size: 2rem;
@@ -20,15 +20,15 @@
 }
 
 .number-button:hover {
-    background-color: #004F52;
+    background-color: #A3ABC0;
 }
 
 .sound-button:hover{
-    background-color: #004F52;
+    background-color: #A3ABC0;
 }
 
 .rules-button {
-    background-color: #008F6B;
+    background-color: #C9E4DE;
     height: 2rem;
     width: 10rem;
     font-size: 1rem;
@@ -40,7 +40,7 @@
 }
 
 .rules-button:hover {
-    background-color: #004F52;
+    background-color: #C9E4DE;
 }
 
 .game {
