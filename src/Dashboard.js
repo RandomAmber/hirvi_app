@@ -39,11 +39,11 @@ function Dashboard() {
         );
     }
 
-    return <>
+    return <div className="dashboardTest">
     <h1>Welcome, {user['name']}</h1>
     <h1>Your total scores:</h1>
     {user_scores}
-    </>
+    </div>
 }
 
 export default Dashboard;

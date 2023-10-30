@@ -12,7 +12,8 @@ export default function Navbar() {
 
     let language = localStorage.getItem('language');
     language = language ? language : 'en';
-    // language = JSON.parse(language)
+    language = JSON.parse(language)
+    
 
     let text = texts['Navbar']
 

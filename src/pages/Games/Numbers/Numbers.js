@@ -7,7 +7,7 @@ import "../Button"
 
 export default function Numbers() {
     return (
-        <div className="main Container">
+        <div className="mainContainer">
             <div className="nameContainer">
                 <h1>Numbers!</h1>
             </div>

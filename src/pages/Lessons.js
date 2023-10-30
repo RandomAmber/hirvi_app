@@ -6,6 +6,7 @@ export default function Lessons() {
 
     return <>
     <LessonMenu/>
-    <h1>Lessons all description</h1>
+
+    <h1 className='gaga'>Lessons all description</h1>
     </>
 }

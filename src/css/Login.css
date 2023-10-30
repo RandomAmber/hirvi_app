@@ -4,6 +4,7 @@
     justify-content: center;
     display: flex;
     text-align: center;
+    min-height: 100vh;
 }
 
 .form {
