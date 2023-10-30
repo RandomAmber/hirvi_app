@@ -15,6 +15,8 @@ export default function Footer() {
         }}><img src={mail} alt='mail' className="icon"></img></Link></li>
         <li className=""><Link to="https://github.com/RandomAmber/hirvi_app"><img src={git} alt='git' className="icon"></img></Link></li>
         </ul>
-        <p className="date">2023-2023</p>
+        <p className="authors">Asta & Asta</p>
+        <p className="date">2023</p>
+
     </foot>
 }
