@@ -14,6 +14,7 @@ import Dashboard from "./Dashboard"
 import Footer from "./Footer"
 import ContactForm from "./ContactForm"
 import Restore from "./Restore_password"
+import ReLink from "./relink"
 
 
 function App() {
@@ -36,6 +37,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard/>} />
         <Route path="/contact" element={<ContactForm/>}/>
         <Route path="/login/restore_password" element={<Restore/>} />
+        <Route path="/link/:link" element={<ReLink />} />
+        <Route path="/link" element={<ReLink />} />
       </Routes>
       </div>
       <Footer/>

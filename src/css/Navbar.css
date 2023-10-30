@@ -1,16 +1,29 @@
+:root {
+    --button-color: whitesmoke;
+    --button-text-color: #3C6E9F;
+    --button-active-color: #63ABF3;
+    --button-active-text-color: whitesmoke;
+    --button-hover-color: #63ABF3;
+    --button-hover-text-color: whitesmoke;
+    --navbar-background-color: whitesmoke;
+    --navbar-height: 3.5rem;
+    --buttons-margin: 1rem;
+  }
+  /*var(--light-text)*/
+
 .nav {
-    background-color: whitesmoke;
-    color: #3C6E9F;
+    background-color: var(--navbar-background-color);
+    color: var(--button-text-color);
     font-weight: 500;
     font-family: 'Helvetica';
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    width:100%;
-    padding: 0 2rem;
+    width: 100%;
+    padding: 0rem 2rem;
     top: 0;
-    position:sticky;
-    height: 3.5rem;
+    position: sticky;
+    height: var(--navbar-height);
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.05);
   }
 
@@ -20,7 +33,6 @@
   
   .nav ul {
     padding: 0.4rem;
-
     list-style: none;
     display: flex;
   }
@@ -40,23 +52,24 @@
   
   }
 
-  .nav li{
-    border-bottom: 2px solid;
-    border-color: black;
+  .nav li {
+    margin-left: var(--buttons-margin);
+    border-radius: 10%;
   }
+
   
   .nav li.active {
-    background-color: #63ABF3;
-    color: white;
+    background-color: var(--button-active-color);
+    color: var(--button-active-text-color);
   }
   
   .nav li:hover {
-    background-color: #63ABF3;
-    color: white;
+    background-color: var(--button-hover-color);
+    color: var(--button-hover-text-color);
   }
   
   .nav button.sign_out_button{
-    background-color: #63ABF3;
+    background-color: var(--button-color);
   }
   
   
@@ -67,19 +80,19 @@
     min-width: 5rem;
     text-align: center;
     cursor: pointer;
-    /* background-color: #004F52; */
-    background-color: #D9D9D9;
-    color: #004F52;
+    background-color: var(--button-color);
+    color: var(--button-text-color);
     font-size: 1rem;
     border: none;
     font-family: 'Helvetica';
+    border-radius: 10%;
   }
   
   
   /* Dropdown button on hover & focus */
   .dropbtn:hover, .dropbtn:focus, .dropbtn:active {
-    background-color: #004F52;
-    color: white;
+    background-color: var(--button-hover-color);
+    color: var(--button-hover-text-color);
   }
   
   /* The container <div> - needed to position the dropdown content */
@@ -91,25 +104,47 @@
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
     display: none;
-    top: 2.5rem;
+    top: var(--navbar-height);
     position: absolute;
-    background-color: #004F52;
-    color: white;
+    background-color: var(--button-color);
+    color: var(--button-text-color);
     min-width: 5rem;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     
   }
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color: white;
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-lang-content {
+        display: none;
+        top: var(--navbar-height);
+        position: absolute;
+        background-color: var(--button-color);
+        color: var(--button-text-color);
+        min-width: 5rem;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        
+      }
+      /* Links inside the dropdown */
+  .dropdown-lang-content a {
+    color: var(--button-text-color);
     padding: .5rem;
     text-decoration: none;
     display: block;
   }
   
   /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #004F52;}
+  .dropdown-lang-content a:hover {background-color: var(--button-hover-color);}
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: var(--button-text-color);
+    padding: .5rem;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: var(--button-hover-color);}
   
   /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
   .show {display:block;}

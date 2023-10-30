@@ -1,0 +1,137 @@
+
+.starter-section {
+    background-image: url('../img/aurora.jpg');
+    background-blend-mode: color;
+    background-size:cover;
+    height: 30rem;
+    width: 100%;
+    display: flex;
+}
+
+.starter-cool-note {
+    left: 3rem;
+    top: 3rem;
+    position: relative;
+    color: whitesmoke;
+    font-size: 3rem;
+    font-weight: 300;
+}
+
+.about-section {
+    display:flex;
+    flex-direction: column;
+    background-color: white;
+    padding-bottom: 3rem;
+}
+
+.about-info {
+    display:flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.about-header {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    align-self: center;
+}
+
+.about-person-left{
+    display: flex;
+    left: 2rem;
+    width: 45%;
+}
+
+
+.about-person-left img{
+    border-radius: 40%;
+    width: 15rem;
+    height: 15rem;
+    position: relative;
+    margin-left: 2rem;
+    margin-right: 2rem;
+
+}
+
+.about-person-right{
+    display: flex;
+    right: 2rem;
+    position: absolute;
+    width: 45%;
+
+}
+
+.about-person-right img{
+    border-radius: 40%;
+    width: 15rem;
+    height: 15rem;
+}
+
+.about-name{
+    text-align: top;
+    font-weight: 500;
+    margin: 1rem;
+}
+
+.about-desc{
+    margin: 1rem;
+    font-weight: 300;
+}
+
+.about-text {
+    align-items: center;
+    text-align: left;
+    justify-content: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-section {
+    width: 100%;
+    background-color: #3a4864;
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    flex-direction: column;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.news-header {
+    color: whitesmoke;
+    padding-bottom: 1rem;
+    font-size: 3rem;
+}
+
+.news {
+    border-color: #004F52;
+    border: #004F52;
+    min-height: 2rem;
+    width: 80%;
+    position: relative;
+    text-align: center;
+    border-style: double;
+    background-color: white;
+    margin-bottom:  1rem;
+
+}
+
+.news-date {
+    font-family: monospace;
+}
+
+.news-title {
+    font-size: larger;
+    font-weight: 700;
+}
+
+.news-text {
+    font-weight: 200;
+}
+
+.logo {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+

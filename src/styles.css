@@ -336,6 +336,9 @@ body {
     left: 2rem;
     top: 10rem;
     /* position: absolute; */
+  left: 2rem;
+  top: 10rem;
+  position: absolute;
 }
 
 .langlogo {

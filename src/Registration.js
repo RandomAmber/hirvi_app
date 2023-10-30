@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './css/Login.css'
 import { useNavigate } from "react-router-dom";
+import texts from "./text.json";
 
 
 function RegistrationForm() {
@@ -18,6 +19,12 @@ function RegistrationForm() {
     const [emailIsntNull, setEmailIsntNull] = useState(null);
     const [emailNotUsed, setEmailNotUsed] = useState(null);
     const [nameIsntNull, setNameIsntNull] = useState(null);
+
+    let language = localStorage.getItem('language');
+    language = language ? language : 'en';
+    language = JSON.parse(language)
+
+    let text = texts['Registration']
 
     const handleInputChange = (e) => {
         const {id , value} = e.target;
@@ -117,40 +124,40 @@ function RegistrationForm() {
         <div className='form-container'>
         <div className="form">
             <div className="body-form">
-            <p className='header'>Registration</p>
+            <p className='header'>{text["registration"][language]}</p>
                 <div className="username">
                     {
-                        (nameIsntNull==false) ? <p className='validation'>Type your name</p> : ''
+                        (nameIsntNull==false) ? <p className='validation'>{text["setname"][language]}</p> : ''
                     }
                     <input className="form__input" type="text" value={name} onChange = {(e) => handleInputChange(e)} id="name" placeholder="Name"/>
                 </div>
                 <div className="email">
                     {
-                        (emailValid==false) ? <p className='validation'>Email isn't correct</p> : ''
+                        (emailValid==false) ? <p className='validation'>{text["invalidemail"][language]}</p> : ''
                     }
                     {
-                        (emailIsntNull==false) ? <p className='validation'>Set your email</p> : ''
+                        (emailIsntNull==false) ? <p className='validation'>{text["setemail"][language]}</p> : ''
                     }
                     {
-                        (emailNotUsed==false) ? <p className='validation'>This email has been used</p> : ''
+                        (emailNotUsed==false) ? <p className='validation'>{text["usedemail"][language]}</p> : ''
                     }
                     <input  type="email" id="email" className="form__input" value={email} onChange = {(e) => handleInputChange(e)} placeholder="Email"/>
                 </div>
                 <div className="password">
                     {
-                        (passwordIsntNull==false) ? <p className='validation'>Set a password</p> : ''
+                        (passwordIsntNull==false) ? <p className='validation'>{text["setpassword"][language]}</p> : ''
                     }
                     <input className="form__input" type="password"  id="password" value={password} onChange = {(e) => handleInputChange(e)} placeholder="Password"/>
                 </div>
                 <div className="confirm-password">
                     {
-                        (passwordValid==false) ? <p className='validation'>Password and Confirm password aren't the same</p> : ''
+                        (passwordValid==false) ? <p className='validation'>{text["confimpass"][language]}</p> : ''
                     }
                     <input className="form__input" type="password" id="confirmPassword" value={confirmPassword} onChange = {(e) => handleInputChange(e)} placeholder="Confirm Password"/>
                 </div>
             </div>
             <div class="register-div">
-                <button onClick={()=>handleSubmit()} type="submit" class="btn">Submit</button>
+                <button onClick={()=>handleSubmit()} type="submit" class="btn">{text["submit"][language]}</button>
             </div>
         </div>
         </div>

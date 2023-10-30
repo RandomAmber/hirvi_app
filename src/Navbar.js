@@ -4,6 +4,7 @@ import logo from "./img/logo.png";
 import texts from "./text.json";
 import './css/Navbar.css';
 
+
 export default function Navbar() {
 
     const navigate = useNavigate();
@@ -14,8 +15,6 @@ export default function Navbar() {
     // language = JSON.parse(language)
 
     let text = texts['Navbar']
-
-    //const user = localStorage.getItem('user');
 
     let user = localStorage.getItem('user');
 
@@ -38,16 +37,27 @@ export default function Navbar() {
 
     return <nav className="nav">
         <Link to='/' className="site-title"><img src={logo} className="logo"></img>Hirvi</Link>
-        <button onClick={()=>{
-            localStorage.setItem('language', JSON.stringify('en'));
-            console.log(location.pathname)
-            navigate(location.pathname)
-        }} className="langlogo">English</button>
-        <button onClick={()=>{
-            localStorage.setItem('language', JSON.stringify('ru'));
-            navigate(location.pathname)
-        }} className="langlogo">Русский</button>
         <ul>
+        <li>
+        <button onClick={
+            ()=>{
+                console.log('function')
+            document.getElementById("myDropdownlang").classList.toggle("show");
+            console.log(document.getElementById("myDropdownlang").classList)
+        }
+        } class="dropbtn">{text['Language'][language]}</button>
+            <div id="myDropdownlang" class="dropdown-content">
+                <a href="#" onClick={()=>{
+                    localStorage.setItem('language', JSON.stringify('en'));
+                    navigate('/link/' + location.pathname.replaceAll('/', '.'))
+                }}>English</a>
+                <a href="#" onClick={()=>{
+                localStorage.setItem('language', JSON.stringify('ru'));
+                navigate('/link/'+location.pathname.replaceAll('/', '.'))
+            }}>Russian</a>
+            </div>
+        </li>
+        <li>
         <button onClick={
             ()=>{
                 console.log('function')
@@ -61,6 +71,7 @@ export default function Navbar() {
                 <a href="/games/alchemy">Alchemy</a>
                 <a href="/games/affixes">Affixes</a>
             </div>
+        </li>
             <CustomLink to="/lessons">{text['Lessons'][language]}</CustomLink>
             <CustomLink to="/">{text['Home'][language]}</CustomLink>
             {
