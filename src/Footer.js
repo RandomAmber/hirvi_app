@@ -1,6 +1,7 @@
 import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom"
 import git from './img/git.png';
 import mail from './img/mail.png';
+import './css/Footer.css';
 
 
 export default function Footer() {
@@ -9,9 +10,7 @@ export default function Footer() {
 
     return <foot className="foot">
         <ul>
-        <li className=""><Link to=""  onClick={()=>{
-            navigate('/contact')
-            
+        <li className=""><Link to="/contact"  onClick={()=>{
         }}><img src={mail} alt='mail' className="icon"></img></Link></li>
         <li className=""><Link to="https://github.com/RandomAmber/hirvi_app"><img src={git} alt='git' className="icon"></img></Link></li>
         </ul>

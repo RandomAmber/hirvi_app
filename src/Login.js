@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './css/Login.css';
 import { useNavigate} from "react-router-dom";
 import {getData} from './utiles.js';
+import texts from "./text.json";
 
 
 function LoginForm() {
@@ -13,6 +14,12 @@ function LoginForm() {
 
     const [passwordIsCorrect, setpasswordIsCorrect] = useState(null)
     const [userExist, setUserExist] = useState(null);
+
+    let language = localStorage.getItem('language');
+    language = language ? language : 'en';
+    language = JSON.parse(language)
+
+    let text = texts['Login']
 
     const handleInputChange = (e) => {
         const {id , value} = e.target;
@@ -62,7 +69,7 @@ function LoginForm() {
         <div className='form-container'>
         <div className="form">
             <div className="body-form">
-                <p className='header'>Login</p>
+                <p className='header'>{text["login"][language]}</p>
                 <div className="login-form-email">
                     {
                         (userExist==false) ? <p className='validation'>This email hasn't been registrated yet.</p> : ''
@@ -77,13 +84,13 @@ function LoginForm() {
                 </div>
             </div>
             <div class="buttons-1">
-                <button onClick={()=>handleSubmit()} type="submit" className="btn">Login</button>
-                <button onClick={()=>{navigate("/registration")}} className="btn">{'Sign up'}</button>
+                <button onClick={()=>handleSubmit()} type="submit" className="btn">{text["login"][language]}</button>
+                <button onClick={()=>{navigate("/registration")}} className="btn">{text["signup"][language]}</button>
             </div>
             <div class="buttons-2">
                 <p>
-                    Don't remember you password? 
-                    <a src='#' onClick={()=>handleRestore()} type="submit" className="link">Restore</a>
+                {text["passwordreminder"][language]}
+                    <a src='#' onClick={()=>handleRestore()} type="submit" className="link">{text["restore"][language]}</a>
                 </p>
             </div>
         </div>

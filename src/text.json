@@ -27,9 +27,98 @@
             "Sign up" : {
                 "en": "Sign up",
                 "ru": "Зарегестрироваться"
+            },
+            "Language" : {
+                "en": "Language",
+                "ru": "Язык"
             }
         },
         "Numbers": {
 
+        },
+        "Home": {
+            "starter": {
+                "en": "Learn Finnish with us",
+                "ru": "Учи финский вместе с нами"
+            },
+            "news": {
+                "en": "News",
+                "ru": "Новости"
+            },
+            "about": {
+                "en": "About us",
+                "ru": "Создатели"
+            },
+            "name_anna": {
+                "en": "Anna Iliukovich-Strakovskaia",
+                "ru": "Анна Илюкович-Страковская"
+            },
+            "desc_anna": {
+                "en": "Full-stack developer (including Machine Learning)",
+                "ru": "Фулл стэк разработчик (Включая Машинное обучение)"
+            },
+            "name_vika": {
+                "en": "Viktoria Tsvetkova",
+                "ru": "Виктория Цветкова"
+            },
+            "desc_vika": {
+                "en": "SSKKY student developer and Languages tutor",
+                "ru": "SSKKY студент разработчик и тьютор иностранных языков"
+            }
+        },
+        "Login": {
+            "login": {
+                "en": "Login",
+                "ru": "Войти"
+            },
+            "signup":
+            {
+                "en": "Sign up",
+                "ru": "Зарегестрироваться"
+            },
+            "passwordreminder":
+            {
+                "en": "Don't remember you password?",
+                "ru": "Не помните пароль?"
+            },
+            "restore":
+            {
+                "en": "Restore",
+                "ru": "Восстановить"
+            }
+        },
+        "Registration": {
+            "registration": {
+                "en": "Registration",
+                "ru": "Регистрация"
+            },
+            "submit": {
+                "en": "Submit",
+                "ru": "Отправить"
+            },
+            "invalidemail": {
+                "en": "Email isn't valid",
+                "ru": "Не корректный адрес почты"
+            },
+            "setemail": {
+                "en": "Set your email",
+                "ru": "Укажите адрес электронной почты"
+            },
+            "setpassword": {
+                "en": "Set your password",
+                "ru": "Задайте пароль"
+            },
+            "setname": {
+                "en": "Set your name",
+                "ru": "Укажите имя"
+            },
+            "confimpass": {
+                "en": "Password and confirm password must be the same",
+                "ru": "Пароли не совпадают"
+            },
+            "usedemail": {
+                "en": "This email has been used already",
+                "ru": "Почтовый адрес уже зарегестрирован"
+            }
         }
 }

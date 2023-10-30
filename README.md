@@ -13,7 +13,9 @@ Web portal for Finnish learners with games, articles and interesting news. Targe
     >conda activate hirvi
 4. Initialize data and run server:
     >cd scripts
+
     >python3 initial_data.py
+    
     >uvicorn sql_app.main:app
 
 #### Web application

@@ -3,6 +3,7 @@
 .form-container{
     justify-content: center;
     display: flex;
+    text-align: center;
 }
 
 .form {
