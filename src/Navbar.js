@@ -1,4 +1,4 @@
-import { Link, useMatch, useResolvedPath } from "react-router-dom"
+import { Link, resolvePath, useMatch, useResolvedPath } from "react-router-dom"
 import { useNavigate, useLocation} from "react-router-dom";
 import logo from "./img/logo.png";
 import texts from "./text.json";

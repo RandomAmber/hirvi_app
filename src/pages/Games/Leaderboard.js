@@ -5,18 +5,28 @@ import React, {useState, useEffect} from 'react';
 
 export default function Leaderboard({game_id, limit}) {
     const [gameRounds, setGameRounds] = useState([])
+    const [time, setTime] = useState([])
+    //let gameRounds = []
 
     const fetchGameRounds = async () => {
 
-        const gameRounds = await getData("http://127.0.0.1:8000/leaderboard/"+game_id+'/'+limit)
-        setGameRounds(gameRounds)
+        let resp = await getData("http://127.0.0.1:8000/leaderboard/"+game_id+'/'+limit)
+        resp = resp ? resp : [];
+        setGameRounds(resp)
+        console.log('op')
+    }
+
+    const timer = async () => {
+        let date = new Date().toLocaleString()
+        setInterval( () => {
+              setTime(date)
+        }, 1000)
     }
 
     useEffect(() => {
         fetchGameRounds()
       }, [])
 
-      console.log(gameRounds)
     
     let board = []
     for(let i=0; i<gameRounds.length; i++){
@@ -27,6 +37,16 @@ export default function Leaderboard({game_id, limit}) {
             </div>
         )
     }
+    console.log(gameRounds)
+    /*setInterval( () => {
+        fetchGameRounds()
+    }, 10000)*/
+    useEffect(() => {
+        const interval = setInterval(() => {
+            fetchGameRounds()
+        }, 2000)
+        return () => clearInterval(interval)
+      }, []);
 
     return (
         <>
